@@ -1,3 +1,5 @@
+E:\B.I.T\Programming2\Project 1 Gideon\Project1Gideon\bin\Debug\net8.0-windows\learners.txt
+E:\B.I.T\Programming2\Project 1 Gideon\Project1Gideon\bin\Debug\net8.0-windows\Lecturers.txt
 E:\B.I.T\Programming2\Project 1 Gideon\Project1Gideon\bin\Debug\net8.0-windows\Project1Gideon.exe
 E:\B.I.T\Programming2\Project 1 Gideon\Project1Gideon\bin\Debug\net8.0-windows\Project1Gideon.deps.json
 E:\B.I.T\Programming2\Project 1 Gideon\Project1Gideon\bin\Debug\net8.0-windows\Project1Gideon.runtimeconfig.json

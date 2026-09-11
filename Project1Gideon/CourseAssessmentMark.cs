@@ -125,10 +125,12 @@ namespace Project1Gideon
             }
             return failMarks;
         }
+        //Returns the average mark
         public double GetAvgMark()
         {
             return marks.Average();
         }
+        //Gets the avg mark (double), rounds it, outputs an int
         public string GetAvgGrade()
         {
             double avg = GetAvgMark();
