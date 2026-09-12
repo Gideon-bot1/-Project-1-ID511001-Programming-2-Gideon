@@ -49,11 +49,6 @@ namespace Project1Gideon
             //Sizes columns automatically to fit all info
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
-        private void AddLearner(Learner learner)
-        {
-            learners.Add(learner);
-            DataHandler.SaveLearnersToFile("learners.txt", learners, courses);
-        }
 
         private void btn2DisplayAllMarks_Click(object sender, EventArgs e)
         {
@@ -159,5 +154,78 @@ namespace Project1Gideon
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        private void btn7DisplayAvgMarks_Click(object sender, EventArgs e)
+        {
+            dgvDisplayInfo.Rows.Clear();
+            dgvDisplayInfo.Columns.Clear();
+
+            dgvDisplayInfo.Columns.Add("ID", "ID");
+            dgvDisplayInfo.Columns.Add("Name", "Name");
+            dgvDisplayInfo.Columns.Add("Course", "Course");
+            dgvDisplayInfo.Columns.Add("Average Mark", "Average Marks");
+
+            foreach (Learner learner in learners)
+            {
+                int rowIdx = dgvDisplayInfo.Rows.Add();
+                dgvDisplayInfo.Rows[rowIdx].Cells["ID"].Value = learner.Id;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Name"].Value = learner.FirstName + " " + learner.LastName;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Course"].Value = learner.CourseAssessmentMark.Course.Code + " " + learner.CourseAssessmentMark.Course.Name;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Average Mark"].Value = learner.CourseAssessmentMark.GetAvgMark();
+            }
+            dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        private void btn8DisplayAvgGrades_Click(object sender, EventArgs e)
+        {
+            dgvDisplayInfo.Rows.Clear();
+            dgvDisplayInfo.Columns.Clear();
+
+            dgvDisplayInfo.Columns.Add("ID", "ID");
+            dgvDisplayInfo.Columns.Add("Name", "Name");
+            dgvDisplayInfo.Columns.Add("Course", "Course");
+            dgvDisplayInfo.Columns.Add("Average Grade", "Average Grade");
+
+            foreach (Learner learner in learners)
+            {
+                int rowIdx = dgvDisplayInfo.Rows.Add();
+                dgvDisplayInfo.Rows[rowIdx].Cells["ID"].Value = learner.Id;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Name"].Value = learner.FirstName + " " + learner.LastName;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Course"].Value = learner.CourseAssessmentMark.Course.Code + " " + learner.CourseAssessmentMark.Course.Name;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Average Grade"].Value = learner.CourseAssessmentMark.GetAvgGrade();
+            }
+            dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        private void btn9DisplayLecturerDetails_Click(object sender, EventArgs e)
+        {
+            dgvDisplayInfo.Rows.Clear();
+            dgvDisplayInfo.Columns.Clear();
+
+            dgvDisplayInfo.Columns.Add("ID", "ID");
+            dgvDisplayInfo.Columns.Add("Name", "Name");
+            dgvDisplayInfo.Columns.Add("Position", "Position");
+            dgvDisplayInfo.Columns.Add("Institution", "Institution");
+            dgvDisplayInfo.Columns.Add("Department", "Department");
+            dgvDisplayInfo.Columns.Add("Course", "Course");
+            dgvDisplayInfo.Columns.Add("Salary", "Salary");
+
+            foreach (Lecturer lecturer in lecturers)
+            {
+                int rowIdx = dgvDisplayInfo.Rows.Add();
+                dgvDisplayInfo.Rows[rowIdx].Cells["ID"].Value = lecturer.Id;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Name"].Value = lecturer.FirstName + " " + lecturer.LastName;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Position"].Value = lecturer.Position;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Institution"].Value = lecturer.Course.Department.Institution.Name;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Department"].Value = lecturer.Course.Department.DepartmentName;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Course"].Value = lecturer.Course.Code + " " + lecturer.Course.Name;
+                dgvDisplayInfo.Rows[rowIdx].Cells["Salary"].Value = (int)lecturer.Salary;
+            }
+            dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        private void AddLearner(Learner learner)
+        {
+            learners.Add(learner);
+            DataHandler.SaveLearnersToFile("learners.txt", learners, courses);
+        }
     }
 }

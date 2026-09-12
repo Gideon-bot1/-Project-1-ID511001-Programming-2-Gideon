@@ -43,7 +43,7 @@
             btnCalculations = new Button();
             btnExit = new Button();
             dgvDisplayInfo = new DataGridView();
-            label1 = new Label();
+            lblDetails = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvDisplayInfo).BeginInit();
             SuspendLayout();
             // 
@@ -136,6 +136,7 @@
             btn7DisplayAvgMarks.Text = "7. Display Average Marks";
             btn7DisplayAvgMarks.TextAlign = ContentAlignment.MiddleLeft;
             btn7DisplayAvgMarks.UseVisualStyleBackColor = false;
+            btn7DisplayAvgMarks.Click += btn7DisplayAvgMarks_Click;
             // 
             // btn8DisplayAvgGrades
             // 
@@ -148,6 +149,7 @@
             btn8DisplayAvgGrades.Text = "8. Display Average Grades";
             btn8DisplayAvgGrades.TextAlign = ContentAlignment.MiddleLeft;
             btn8DisplayAvgGrades.UseVisualStyleBackColor = false;
+            btn8DisplayAvgGrades.Click += btn8DisplayAvgGrades_Click;
             // 
             // btn9DisplayLecturerDetails
             // 
@@ -160,6 +162,7 @@
             btn9DisplayLecturerDetails.Text = "9. Display Lecturer Details";
             btn9DisplayLecturerDetails.TextAlign = ContentAlignment.MiddleLeft;
             btn9DisplayLecturerDetails.UseVisualStyleBackColor = false;
+            btn9DisplayLecturerDetails.Click += btn9DisplayLecturerDetails_Click;
             // 
             // btn10AddALearner
             // 
@@ -230,16 +233,16 @@
             dgvDisplayInfo.Size = new Size(1543, 724);
             dgvDisplayInfo.TabIndex = 14;
             // 
-            // label1
+            // lblDetails
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 20F);
-            label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(215, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(98, 37);
-            label1.TabIndex = 16;
-            label1.Text = "Details";
+            lblDetails.AutoSize = true;
+            lblDetails.Font = new Font("Segoe UI", 20F);
+            lblDetails.ImageAlign = ContentAlignment.MiddleLeft;
+            lblDetails.Location = new Point(215, 25);
+            lblDetails.Name = "lblDetails";
+            lblDetails.Size = new Size(98, 37);
+            lblDetails.TabIndex = 16;
+            lblDetails.Text = "Details";
             // 
             // Form1
             // 
@@ -247,7 +250,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(204, 205, 203);
             ClientSize = new Size(1776, 1006);
-            Controls.Add(label1);
+            Controls.Add(lblDetails);
             Controls.Add(dgvDisplayInfo);
             Controls.Add(btnExit);
             Controls.Add(btnCalculations);
@@ -287,6 +290,6 @@
         private Button btnCalculations;
         private Button btnExit;
         private DataGridView dgvDisplayInfo;
-        private Label label1;
+        private Label lblDetails;
     }
 }
