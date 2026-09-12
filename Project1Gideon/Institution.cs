@@ -24,5 +24,17 @@ namespace Project1Gideon
         {
             return $"Institution: {name}\nRegion: {region}\nCountry: {country}";
         }
+        public string Name
+        {
+            get { return name; }
+        }
+        public string Region
+        {
+            get { return region; }
+        }
+        public string Country
+{
+            get { return country; }
+        }
     }
 }

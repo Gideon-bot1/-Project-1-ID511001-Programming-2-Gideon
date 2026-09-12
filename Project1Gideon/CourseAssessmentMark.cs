@@ -18,9 +18,9 @@ namespace Project1Gideon
             this.course = course;
             this.marks = marks;
         }
-        public Course GetCourse()
+        public Course Course
         {
-            return course;
+            get { return course; }
         }
         //Converts marks to grades
         private string MarkToGrade(int mark)
@@ -70,9 +70,9 @@ namespace Project1Gideon
                 return "E";
             }
         }
-        public List<int> GetAllMarks()
+        public List<int> AllMarks
         {
-            return marks;
+            get { return marks; }
         }
         //creates a list of all grades
         public List<string> GetAllGrades()

@@ -71,6 +71,7 @@
             btn2DisplayAllMarks.Text = "2. Display All Marks";
             btn2DisplayAllMarks.TextAlign = ContentAlignment.MiddleLeft;
             btn2DisplayAllMarks.UseVisualStyleBackColor = false;
+            btn2DisplayAllMarks.Click += btn2DisplayAllMarks_Click;
             // 
             // btn3DisplayAllGrades
             // 
@@ -83,6 +84,7 @@
             btn3DisplayAllGrades.Text = "3. Display All Grades";
             btn3DisplayAllGrades.TextAlign = ContentAlignment.MiddleLeft;
             btn3DisplayAllGrades.UseVisualStyleBackColor = false;
+            btn3DisplayAllGrades.Click += btn3DisplayAllGrades_Click;
             // 
             // btn4DisplayHighestMarks
             // 
@@ -95,6 +97,7 @@
             btn4DisplayHighestMarks.Text = "4. Display Highest Marks";
             btn4DisplayHighestMarks.TextAlign = ContentAlignment.MiddleLeft;
             btn4DisplayHighestMarks.UseVisualStyleBackColor = false;
+            btn4DisplayHighestMarks.Click += btn4DisplayHighestMarks_Click;
             // 
             // btn5DisplayLowestMarks
             // 
@@ -107,6 +110,7 @@
             btn5DisplayLowestMarks.Text = "5. Display Lowest Marks";
             btn5DisplayLowestMarks.TextAlign = ContentAlignment.MiddleLeft;
             btn5DisplayLowestMarks.UseVisualStyleBackColor = false;
+            btn5DisplayLowestMarks.Click += btn5DisplayLowestMarks_Click;
             // 
             // btn6DisplayFailMarks
             // 
@@ -119,6 +123,7 @@
             btn6DisplayFailMarks.Text = "6. Display Fail Marks";
             btn6DisplayFailMarks.TextAlign = ContentAlignment.MiddleLeft;
             btn6DisplayFailMarks.UseVisualStyleBackColor = false;
+            btn6DisplayFailMarks.Click += btn6DisplayFailMarks_Click;
             // 
             // btn7DisplayAvgMarks
             // 
@@ -224,7 +229,6 @@
             dgvDisplayInfo.Name = "dgvDisplayInfo";
             dgvDisplayInfo.Size = new Size(1543, 724);
             dgvDisplayInfo.TabIndex = 14;
-
             // 
             // label1
             // 

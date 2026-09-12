@@ -15,15 +15,14 @@ namespace Project1Gideon
             this.courseAssessmentMark = courseAssessmentMark;
         }
 
-        public CourseAssessmentMark GetCourseAssessmentMark()
+        public CourseAssessmentMark CourseAssessmentMark
         {
-            return courseAssessmentMark;
+            get { return courseAssessmentMark; }
         }
 
         public string LearnerInfo()
         {
-            return $"ID: {id}\nName: {firstName} {lastName}\nCourse: {courseAssessmentMark.GetCourse().CourseInfo()}";
+            return $"ID: {id}\nName: {firstName} {lastName}\nCourse: {courseAssessmentMark.Course.CourseInfo()}";
         }
-
     }
 }

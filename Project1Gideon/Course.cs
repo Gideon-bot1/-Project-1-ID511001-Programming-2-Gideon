@@ -30,5 +30,29 @@ namespace Project1Gideon
         {
             return $"{department.DepartmentInfo()}\nCode: {code}\nCourse: {name}\nDescription: {description}\nCredits: {credits}\nFees: {fees:c}";
         }
+        public string Code
+        { 
+            get { return code; }
+        }
+        public string Name
+        {
+            get { return name; }
+        }
+        public string Description
+        {
+            get { return description; }
+        }
+        public int Credits
+        {
+            get { return credits; }
+        }
+        public int Fees
+        {
+            get { return fees; }
+        }
+        public Department Department
+        {
+            get { return department; }
+        }
     }
 }

@@ -24,18 +24,18 @@ namespace Project1Gideon
             return $"ID: {id}\nName: {firstName} {lastName}\nPosition: {position}\nSalary: {salary}\nCourse: {course.CourseInfo()}";
         }
 
-        public EPosition GetPosition()
+        public EPosition Position
         {
-            return position;
+            get { return position; }
         }
 
-        public ESalary GetSalary()
+        public ESalary Salary
         {
-            return salary;
+            get { return salary; }
         }
-        public Course GetCourse()
+        public Course Course
         {
-            return course;
+            get { return course; }
         }
     }
 }

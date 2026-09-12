@@ -19,19 +19,19 @@ namespace Project1Gideon
             this.lastName = lastName;
         }
 
-        public int GetId()
+        public int Id
         {
-            return id;
+            get { return id; }
         }
 
-        public string GetFirstName()
+        public string FirstName
         {
-            return firstName;
+            get { return firstName; }
         }
 
-        public string GetLastName()
+        public string LastName
         {
-            return lastName;
+            get { return lastName; }
         }
     }
 }

@@ -20,5 +20,13 @@ namespace Project1Gideon
         {
             return $"{institution.InstitutionInfo()}\nDepartment: {departmentname}";
         }
+        public string DepartmentName
+        {
+            get { return departmentname; }
+        }
+        public Institution Institution
+        {
+            get { return institution; }
+        }
     }
 }

@@ -75,12 +75,12 @@ namespace Project1Gideon
 
             foreach (Learner learner in learners)
             {
-                CourseAssessmentMark assessmentMark = learner.GetCourseAssessmentMark();
-                List<int> marks = assessmentMark.GetAllMarks();
-                int id = learner.GetId();
-                string firstName = learner.GetFirstName();
-                string lastName = learner.GetLastName();
-                int courseNum = courses.IndexOf(assessmentMark.GetCourse());
+                CourseAssessmentMark assessmentMark = learner.CourseAssessmentMark;
+                List<int> marks = assessmentMark.AllMarks;
+                int id = learner.Id;
+                string firstName = learner.FirstName;
+                string lastName = learner.LastName;
+                int courseNum = courses.IndexOf(assessmentMark.Course);
 
                 string line = $"{id},{firstName},{lastName},{courseNum},{marks[0]},{marks[1]},{marks[2]},{marks[3]},{marks[4]}";
                 lines.Add(line);
@@ -93,12 +93,12 @@ namespace Project1Gideon
             List<string> lines = new List<string>();
             foreach (Lecturer lecturer in lecturers)
             {
-                int id = lecturer.GetId();
-                string firstName = lecturer.GetFirstName();
-                string lastName = lecturer.GetLastName();
-                EPosition position = lecturer.GetPosition();
-                ESalary salary = lecturer.GetSalary();
-                Course course = lecturer.GetCourse();
+                int id = lecturer.Id;
+                string firstName = lecturer.FirstName;
+                string lastName = lecturer.LastName;
+                EPosition position = lecturer.Position;
+                ESalary salary = lecturer.Salary;
+                Course course = lecturer.Course;
                 int courseNum = courses.IndexOf(course);
 
                 int positionNum = (int)position;
