@@ -44,6 +44,26 @@
             btnExit = new Button();
             dgvDisplayInfo = new DataGridView();
             lblDetails = new Label();
+            lblFirstName = new Label();
+            lblLastName = new Label();
+            lblCourse = new Label();
+            lblMark1 = new Label();
+            lblMark2 = new Label();
+            lblMark3 = new Label();
+            lblMark4 = new Label();
+            lblMark5 = new Label();
+            btnSaveLearner = new Button();
+            tbxFirstName = new TextBox();
+            tbxLastName = new TextBox();
+            tbxMark1 = new TextBox();
+            tbxMark2 = new TextBox();
+            tbxMark3 = new TextBox();
+            tbxMark4 = new TextBox();
+            tbxMark5 = new TextBox();
+            cmbCourse = new ComboBox();
+            lblPosition = new Label();
+            cmbPosition = new ComboBox();
+            btnSaveLecturer = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDisplayInfo).BeginInit();
             SuspendLayout();
             // 
@@ -76,6 +96,7 @@
             // btn3DisplayAllGrades
             // 
             btn3DisplayAllGrades.BackColor = Color.DarkGray;
+            btn3DisplayAllGrades.FlatAppearance.BorderColor = Color.Black;
             btn3DisplayAllGrades.Font = new Font("Segoe UI", 11F);
             btn3DisplayAllGrades.Location = new Point(12, 124);
             btn3DisplayAllGrades.Name = "btn3DisplayAllGrades";
@@ -175,6 +196,7 @@
             btn10AddALearner.Text = "10. Add a Learner";
             btn10AddALearner.TextAlign = ContentAlignment.MiddleLeft;
             btn10AddALearner.UseVisualStyleBackColor = false;
+            btn10AddALearner.Click += btn10AddALearner_Click;
             // 
             // btn11AddALecturer
             // 
@@ -187,6 +209,7 @@
             btn11AddALecturer.Text = "11. Add a Lecturer";
             btn11AddALecturer.TextAlign = ContentAlignment.MiddleLeft;
             btn11AddALecturer.UseVisualStyleBackColor = false;
+            btn11AddALecturer.Click += btn11AddALecturer_Click;
             // 
             // btn12ReomoveALecturer
             // 
@@ -238,11 +261,241 @@
             lblDetails.AutoSize = true;
             lblDetails.Font = new Font("Segoe UI", 20F);
             lblDetails.ImageAlign = ContentAlignment.MiddleLeft;
-            lblDetails.Location = new Point(215, 25);
+            lblDetails.Location = new Point(232, 25);
             lblDetails.Name = "lblDetails";
-            lblDetails.Size = new Size(98, 37);
+            lblDetails.Size = new Size(104, 37);
             lblDetails.TabIndex = 16;
-            lblDetails.Text = "Details";
+            lblDetails.Text = "Details:";
+            // 
+            // lblFirstName
+            // 
+            lblFirstName.AutoSize = true;
+            lblFirstName.BackColor = Color.FromArgb(204, 205, 203);
+            lblFirstName.Font = new Font("Segoe UI", 18F);
+            lblFirstName.ImageAlign = ContentAlignment.MiddleLeft;
+            lblFirstName.Location = new Point(232, 86);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(134, 32);
+            lblFirstName.TabIndex = 17;
+            lblFirstName.Text = "First Name:";
+            lblFirstName.Visible = false;
+            // 
+            // lblLastName
+            // 
+            lblLastName.AutoSize = true;
+            lblLastName.BackColor = Color.FromArgb(204, 205, 203);
+            lblLastName.Font = new Font("Segoe UI", 18F);
+            lblLastName.ImageAlign = ContentAlignment.MiddleLeft;
+            lblLastName.Location = new Point(232, 142);
+            lblLastName.Name = "lblLastName";
+            lblLastName.Size = new Size(131, 32);
+            lblLastName.TabIndex = 18;
+            lblLastName.Text = "Last Name:";
+            lblLastName.Visible = false;
+            // 
+            // lblCourse
+            // 
+            lblCourse.AutoSize = true;
+            lblCourse.BackColor = Color.FromArgb(204, 205, 203);
+            lblCourse.Font = new Font("Segoe UI", 18F);
+            lblCourse.ImageAlign = ContentAlignment.MiddleLeft;
+            lblCourse.Location = new Point(232, 198);
+            lblCourse.Name = "lblCourse";
+            lblCourse.Size = new Size(93, 32);
+            lblCourse.TabIndex = 19;
+            lblCourse.Text = "Course:";
+            lblCourse.Visible = false;
+            // 
+            // lblMark1
+            // 
+            lblMark1.AutoSize = true;
+            lblMark1.BackColor = Color.FromArgb(204, 205, 203);
+            lblMark1.Font = new Font("Segoe UI", 18F);
+            lblMark1.ImageAlign = ContentAlignment.MiddleLeft;
+            lblMark1.Location = new Point(232, 254);
+            lblMark1.Name = "lblMark1";
+            lblMark1.Size = new Size(246, 32);
+            lblMark1.TabIndex = 20;
+            lblMark1.Text = "Assesment Mark One:";
+            lblMark1.Visible = false;
+            // 
+            // lblMark2
+            // 
+            lblMark2.AutoSize = true;
+            lblMark2.BackColor = Color.FromArgb(204, 205, 203);
+            lblMark2.Font = new Font("Segoe UI", 18F);
+            lblMark2.ImageAlign = ContentAlignment.MiddleLeft;
+            lblMark2.Location = new Point(232, 310);
+            lblMark2.Name = "lblMark2";
+            lblMark2.Size = new Size(244, 32);
+            lblMark2.TabIndex = 21;
+            lblMark2.Text = "Assesment Mark Two:";
+            lblMark2.Visible = false;
+            // 
+            // lblMark3
+            // 
+            lblMark3.AutoSize = true;
+            lblMark3.BackColor = Color.FromArgb(204, 205, 203);
+            lblMark3.Font = new Font("Segoe UI", 18F);
+            lblMark3.ImageAlign = ContentAlignment.MiddleLeft;
+            lblMark3.Location = new Point(232, 366);
+            lblMark3.Name = "lblMark3";
+            lblMark3.Size = new Size(262, 32);
+            lblMark3.TabIndex = 22;
+            lblMark3.Text = "Assesment Mark Three:";
+            lblMark3.Visible = false;
+            // 
+            // lblMark4
+            // 
+            lblMark4.AutoSize = true;
+            lblMark4.BackColor = Color.FromArgb(204, 205, 203);
+            lblMark4.Font = new Font("Segoe UI", 18F);
+            lblMark4.ImageAlign = ContentAlignment.MiddleLeft;
+            lblMark4.Location = new Point(232, 422);
+            lblMark4.Name = "lblMark4";
+            lblMark4.Size = new Size(249, 32);
+            lblMark4.TabIndex = 23;
+            lblMark4.Text = "Assesment Mark Four:";
+            lblMark4.Visible = false;
+            // 
+            // lblMark5
+            // 
+            lblMark5.AutoSize = true;
+            lblMark5.BackColor = Color.FromArgb(204, 205, 203);
+            lblMark5.Font = new Font("Segoe UI", 18F);
+            lblMark5.ImageAlign = ContentAlignment.MiddleLeft;
+            lblMark5.Location = new Point(232, 478);
+            lblMark5.Name = "lblMark5";
+            lblMark5.Size = new Size(244, 32);
+            lblMark5.TabIndex = 24;
+            lblMark5.Text = "Assesment Mark Five:";
+            lblMark5.Visible = false;
+            // 
+            // btnSaveLearner
+            // 
+            btnSaveLearner.BackColor = Color.DarkGray;
+            btnSaveLearner.Cursor = Cursors.Hand;
+            btnSaveLearner.FlatAppearance.BorderColor = Color.Black;
+            btnSaveLearner.Font = new Font("Segoe UI", 11F);
+            btnSaveLearner.Location = new Point(232, 530);
+            btnSaveLearner.Name = "btnSaveLearner";
+            btnSaveLearner.Size = new Size(101, 36);
+            btnSaveLearner.TabIndex = 25;
+            btnSaveLearner.Text = "Save";
+            btnSaveLearner.UseVisualStyleBackColor = false;
+            btnSaveLearner.Visible = false;
+            btnSaveLearner.Click += btnSaveLearner_Click;
+            // 
+            // tbxFirstName
+            // 
+            tbxFirstName.Cursor = Cursors.IBeam;
+            tbxFirstName.Location = new Point(538, 95);
+            tbxFirstName.Name = "tbxFirstName";
+            tbxFirstName.Size = new Size(230, 23);
+            tbxFirstName.TabIndex = 26;
+            tbxFirstName.Visible = false;
+            // 
+            // tbxLastName
+            // 
+            tbxLastName.Cursor = Cursors.IBeam;
+            tbxLastName.Location = new Point(538, 151);
+            tbxLastName.Name = "tbxLastName";
+            tbxLastName.Size = new Size(230, 23);
+            tbxLastName.TabIndex = 27;
+            tbxLastName.Visible = false;
+            // 
+            // tbxMark1
+            // 
+            tbxMark1.Cursor = Cursors.IBeam;
+            tbxMark1.Location = new Point(538, 263);
+            tbxMark1.Name = "tbxMark1";
+            tbxMark1.Size = new Size(98, 23);
+            tbxMark1.TabIndex = 28;
+            tbxMark1.Visible = false;
+            // 
+            // tbxMark2
+            // 
+            tbxMark2.Cursor = Cursors.IBeam;
+            tbxMark2.Location = new Point(538, 319);
+            tbxMark2.Name = "tbxMark2";
+            tbxMark2.Size = new Size(98, 23);
+            tbxMark2.TabIndex = 29;
+            tbxMark2.Visible = false;
+            // 
+            // tbxMark3
+            // 
+            tbxMark3.Cursor = Cursors.IBeam;
+            tbxMark3.Location = new Point(538, 377);
+            tbxMark3.Name = "tbxMark3";
+            tbxMark3.Size = new Size(98, 23);
+            tbxMark3.TabIndex = 30;
+            tbxMark3.Visible = false;
+            // 
+            // tbxMark4
+            // 
+            tbxMark4.Cursor = Cursors.IBeam;
+            tbxMark4.Location = new Point(538, 433);
+            tbxMark4.Name = "tbxMark4";
+            tbxMark4.Size = new Size(98, 23);
+            tbxMark4.TabIndex = 31;
+            tbxMark4.Visible = false;
+            // 
+            // tbxMark5
+            // 
+            tbxMark5.Cursor = Cursors.IBeam;
+            tbxMark5.Location = new Point(538, 487);
+            tbxMark5.Name = "tbxMark5";
+            tbxMark5.Size = new Size(98, 23);
+            tbxMark5.TabIndex = 32;
+            tbxMark5.Visible = false;
+            // 
+            // cmbCourse
+            // 
+            cmbCourse.FormattingEnabled = true;
+            cmbCourse.Location = new Point(538, 207);
+            cmbCourse.MaxDropDownItems = 3;
+            cmbCourse.Name = "cmbCourse";
+            cmbCourse.Size = new Size(230, 23);
+            cmbCourse.TabIndex = 33;
+            cmbCourse.Visible = false;
+            // 
+            // lblPosition
+            // 
+            lblPosition.AutoSize = true;
+            lblPosition.BackColor = Color.FromArgb(204, 205, 203);
+            lblPosition.Font = new Font("Segoe UI", 18F);
+            lblPosition.ImageAlign = ContentAlignment.MiddleLeft;
+            lblPosition.Location = new Point(232, 254);
+            lblPosition.Name = "lblPosition";
+            lblPosition.Size = new Size(103, 32);
+            lblPosition.TabIndex = 34;
+            lblPosition.Text = "Position:";
+            lblPosition.Visible = false;
+            // 
+            // cmbPosition
+            // 
+            cmbPosition.Cursor = Cursors.Hand;
+            cmbPosition.FormattingEnabled = true;
+            cmbPosition.Location = new Point(538, 265);
+            cmbPosition.MaxDropDownItems = 3;
+            cmbPosition.Name = "cmbPosition";
+            cmbPosition.Size = new Size(230, 23);
+            cmbPosition.TabIndex = 35;
+            cmbPosition.Visible = false;
+            // 
+            // btnSaveLecturer
+            // 
+            btnSaveLecturer.BackColor = Color.DarkGray;
+            btnSaveLecturer.Cursor = Cursors.Hand;
+            btnSaveLecturer.FlatAppearance.BorderColor = Color.Black;
+            btnSaveLecturer.Font = new Font("Segoe UI", 11F);
+            btnSaveLecturer.Location = new Point(339, 530);
+            btnSaveLecturer.Name = "btnSaveLecturer";
+            btnSaveLecturer.Size = new Size(101, 36);
+            btnSaveLecturer.TabIndex = 36;
+            btnSaveLecturer.Text = "Save";
+            btnSaveLecturer.UseVisualStyleBackColor = false;
+            btnSaveLecturer.Visible = false;
             // 
             // Form1
             // 
@@ -250,6 +503,26 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(204, 205, 203);
             ClientSize = new Size(1776, 1006);
+            Controls.Add(btnSaveLecturer);
+            Controls.Add(cmbPosition);
+            Controls.Add(lblPosition);
+            Controls.Add(cmbCourse);
+            Controls.Add(tbxMark5);
+            Controls.Add(tbxMark4);
+            Controls.Add(tbxMark3);
+            Controls.Add(tbxMark2);
+            Controls.Add(tbxMark1);
+            Controls.Add(tbxLastName);
+            Controls.Add(tbxFirstName);
+            Controls.Add(btnSaveLearner);
+            Controls.Add(lblMark5);
+            Controls.Add(lblMark4);
+            Controls.Add(lblMark3);
+            Controls.Add(lblMark2);
+            Controls.Add(lblMark1);
+            Controls.Add(lblCourse);
+            Controls.Add(lblLastName);
+            Controls.Add(lblFirstName);
             Controls.Add(lblDetails);
             Controls.Add(dgvDisplayInfo);
             Controls.Add(btnExit);
@@ -291,5 +564,25 @@
         private Button btnExit;
         private DataGridView dgvDisplayInfo;
         private Label lblDetails;
+        private Label lblFirstName;
+        private Label lblLastName;
+        private Label lblCourse;
+        private Label lblMark1;
+        private Label lblMark2;
+        private Label lblMark3;
+        private Label lblMark4;
+        private Label lblMark5;
+        private Button btnSaveLearner;
+        private TextBox tbxFirstName;
+        private TextBox tbxLastName;
+        private TextBox tbxMark1;
+        private TextBox tbxMark2;
+        private TextBox tbxMark3;
+        private TextBox tbxMark4;
+        private TextBox tbxMark5;
+        private ComboBox cmbCourse;
+        private Label lblPosition;
+        private ComboBox cmbPosition;
+        private Button btnSaveLecturer;
     }
 }

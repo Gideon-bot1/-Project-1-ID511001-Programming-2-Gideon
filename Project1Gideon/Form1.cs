@@ -15,6 +15,11 @@ namespace Project1Gideon
             departments = Seeder.SeedDepartments();
             courses = Seeder.SeedCourses();
 
+            foreach (Course course in courses)
+            {
+                cmbCourse.Items.Add(course.Code + " " + course.Name);
+            }
+
             learners = new List<Learner>();
             lecturers = new List<Lecturer>();
 
@@ -22,10 +27,97 @@ namespace Project1Gideon
             DataHandler.ReadLearnersFromFile("learners.txt", learners, courses);
             DataHandler.ReadLecturersFromFile("lecturers.txt", lecturers, courses);
         }
-        private void btn1DisplayCourseDetails_Click(object sender, EventArgs e)
+        private void ShowLearnerInputs()
+        {
+            lblDetails.Text = "Add Learner:";
+            dgvDisplayInfo.Visible = false;
+            lblFirstName.Visible = true;
+            lblLastName.Visible = true;
+            lblCourse.Visible = true;
+            lblMark1.Visible = true;
+            lblMark2.Visible = true;
+            lblMark3.Visible = true;
+            lblMark4.Visible = true;
+            lblMark5.Visible = true;
+            tbxFirstName.Visible = true;
+            tbxLastName.Visible = true;
+            tbxMark1.Visible = true;
+            tbxMark2.Visible = true;
+            tbxMark3.Visible = true;
+            tbxMark4.Visible = true;
+            tbxMark5.Visible = true;
+            btnSaveLearner.Visible = true;
+            cmbCourse.Visible = true;
+        }
+        private void HideLearnerInputs()
+        {
+            lblFirstName.Visible = false;
+            lblLastName.Visible = false;
+            lblCourse.Visible = false;
+            lblMark1.Visible = false;
+            lblMark2.Visible = false;
+            lblMark3.Visible = false;
+            lblMark4.Visible = false;
+            lblMark5.Visible = false;
+            tbxFirstName.Visible = false;
+            tbxLastName.Visible = false;
+            tbxMark1.Visible = false;
+            tbxMark2.Visible = false;
+            tbxMark3.Visible = false;
+            tbxMark4.Visible = false;
+            tbxMark5.Visible = false;
+            btnSaveLearner.Visible = false;
+            cmbCourse.Visible = false;
+        }
+        private void ClearAddLearner()
+        {
+            tbxFirstName.Clear();
+            tbxLastName.Clear();
+            cmbCourse.SelectedIndex = -1;
+            tbxMark1.Clear();
+            tbxMark2.Clear();
+            tbxMark3.Clear();
+            tbxMark4.Clear();
+            tbxMark5.Clear();
+        }
+        private void ShowLecturerInputs()
         {
             dgvDisplayInfo.Rows.Clear();
             dgvDisplayInfo.Columns.Clear();
+            dgvDisplayInfo.Visible = false;
+            lblDetails.Text = "Add Lecturer:";
+            lblFirstName.Visible = true;
+            tbxFirstName.Visible = true;
+            lblLastName.Visible = true;
+            tbxLastName.Visible = true;
+            lblCourse.Visible = true;
+            cmbCourse.Visible = true;
+            lblPosition.Visible = true;
+            cmbPosition.Visible = true;
+        }
+        private void HideLecturerInputs()
+        {
+            lblFirstName.Visible = false;
+            tbxFirstName.Visible = false;
+            lblLastName.Visible = false;
+            tbxLastName.Visible = false;
+            lblCourse.Visible = false;
+            cmbCourse.Visible = false;
+            lblPosition.Visible = false;
+            cmbPosition.Visible = false;
+        }
+        private void ClearDgv()
+        {
+            dgvDisplayInfo.Rows.Clear();
+            dgvDisplayInfo.Columns.Clear();
+        }
+        private void btn1DisplayCourseDetails_Click(object sender, EventArgs e)
+        {
+            ClearDgv();
+            dgvDisplayInfo.Visible = true;
+            lblDetails.Text = "Display: Course Details";
+            HideLearnerInputs();
+            HideLecturerInputs();
 
             dgvDisplayInfo.Columns.Add("Course", "Course");
             dgvDisplayInfo.Columns.Add("Description", "Description");
@@ -52,8 +144,11 @@ namespace Project1Gideon
 
         private void btn2DisplayAllMarks_Click(object sender, EventArgs e)
         {
-            dgvDisplayInfo.Rows.Clear();
-            dgvDisplayInfo.Columns.Clear();
+            ClearDgv();
+            dgvDisplayInfo.Visible = true;
+            lblDetails.Text = "Display: All Marks";
+            HideLearnerInputs();
+            HideLecturerInputs();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -73,8 +168,11 @@ namespace Project1Gideon
 
         private void btn3DisplayAllGrades_Click(object sender, EventArgs e)
         {
-            dgvDisplayInfo.Rows.Clear();
-            dgvDisplayInfo.Columns.Clear();
+            ClearDgv();
+            dgvDisplayInfo.Visible = true;
+            lblDetails.Text = "Display: All Grades";
+            HideLearnerInputs();
+            HideLecturerInputs();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -93,8 +191,11 @@ namespace Project1Gideon
         }
         private void btn4DisplayHighestMarks_Click(object sender, EventArgs e)
         {
-            dgvDisplayInfo.Rows.Clear();
-            dgvDisplayInfo.Columns.Clear();
+            ClearDgv();
+            dgvDisplayInfo.Visible = true;
+            lblDetails.Text = "Display: Highest Marks";
+            HideLearnerInputs();
+            HideLecturerInputs();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -114,8 +215,11 @@ namespace Project1Gideon
 
         private void btn5DisplayLowestMarks_Click(object sender, EventArgs e)
         {
-            dgvDisplayInfo.Rows.Clear();
-            dgvDisplayInfo.Columns.Clear();
+            ClearDgv();
+            dgvDisplayInfo.Visible = true;
+            lblDetails.Text = "Display: Lowest Marks";
+            HideLearnerInputs();
+            HideLecturerInputs();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -135,8 +239,11 @@ namespace Project1Gideon
 
         private void btn6DisplayFailMarks_Click(object sender, EventArgs e)
         {
-            dgvDisplayInfo.Rows.Clear();
-            dgvDisplayInfo.Columns.Clear();
+            ClearDgv();
+            dgvDisplayInfo.Visible = true;
+            lblDetails.Text = "Display: Fail Marks";
+            HideLearnerInputs();
+            HideLecturerInputs();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -156,8 +263,11 @@ namespace Project1Gideon
 
         private void btn7DisplayAvgMarks_Click(object sender, EventArgs e)
         {
-            dgvDisplayInfo.Rows.Clear();
-            dgvDisplayInfo.Columns.Clear();
+            ClearDgv();
+            dgvDisplayInfo.Visible = true;
+            lblDetails.Text = "Display: Average Marks";
+            HideLearnerInputs();
+            HideLecturerInputs();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -177,8 +287,11 @@ namespace Project1Gideon
 
         private void btn8DisplayAvgGrades_Click(object sender, EventArgs e)
         {
-            dgvDisplayInfo.Rows.Clear();
-            dgvDisplayInfo.Columns.Clear();
+            ClearDgv();
+            dgvDisplayInfo.Visible = true;
+            lblDetails.Text = "Display: Average Grades";
+            HideLearnerInputs();
+            HideLecturerInputs();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -198,8 +311,11 @@ namespace Project1Gideon
 
         private void btn9DisplayLecturerDetails_Click(object sender, EventArgs e)
         {
-            dgvDisplayInfo.Rows.Clear();
-            dgvDisplayInfo.Columns.Clear();
+            ClearDgv();
+            dgvDisplayInfo.Visible = true;
+            lblDetails.Text = "Display: Lecturer Details";
+            HideLearnerInputs();
+            HideLecturerInputs();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -222,10 +338,51 @@ namespace Project1Gideon
             }
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        private void btn10AddALearner_Click(object sender, EventArgs e)
+        {
+            HideLecturerInputs();
+            ShowLearnerInputs();
+        }
+
+        private void btn11AddALecturer_Click(object sender, EventArgs e)
+        {
+            HideLearnerInputs();
+            ShowLecturerInputs();
+        }
         private void AddLearner(Learner learner)
         {
             learners.Add(learner);
             DataHandler.SaveLearnersToFile("learners.txt", learners, courses);
+        }
+
+        private void btnSaveLearner_Click(object sender, EventArgs e)
+        {
+            //Dont forget to add error handling
+
+            string firstName = tbxFirstName.Text;
+            string lastName = tbxLastName.Text;
+            int courseNum = cmbCourse.SelectedIndex;
+            Course course = courses[courseNum];
+
+            int mark1 = Convert.ToInt32(tbxMark1.Text);
+            int mark2 = Convert.ToInt32(tbxMark2.Text);
+            int mark3 = Convert.ToInt32(tbxMark3.Text);
+            int mark4 = Convert.ToInt32(tbxMark4.Text);
+            int mark5 = Convert.ToInt32(tbxMark5.Text);
+
+            List<int> marks = new List<int>()
+            { mark1, mark2, mark3, mark4, mark5 };
+
+            CourseAssessmentMark assessmentMark = new CourseAssessmentMark(course, marks);
+
+            int id = learners.Count + 1;
+
+            Learner learner = new Learner(id, firstName, lastName, assessmentMark);
+
+            AddLearner(learner);
+            MessageBox.Show("Learner Saved");
+            ClearAddLearner();
         }
     }
 }

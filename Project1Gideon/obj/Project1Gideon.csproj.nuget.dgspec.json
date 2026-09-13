@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\B.I.T\\Programming2\\Project 1 Gideon\\Project1Gideon\\Project1Gideon.csproj": {}
+    "E:\\B.I.T\\Programming2\\Project1 Assesment Gideon\\-Project-1-ID511001-Programming-2-Gideon\\Project1Gideon\\Project1Gideon.csproj": {}
   },
   "projects": {
-    "E:\\B.I.T\\Programming2\\Project 1 Gideon\\Project1Gideon\\Project1Gideon.csproj": {
+    "E:\\B.I.T\\Programming2\\Project1 Assesment Gideon\\-Project-1-ID511001-Programming-2-Gideon\\Project1Gideon\\Project1Gideon.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\B.I.T\\Programming2\\Project 1 Gideon\\Project1Gideon\\Project1Gideon.csproj",
+        "projectUniqueName": "E:\\B.I.T\\Programming2\\Project1 Assesment Gideon\\-Project-1-ID511001-Programming-2-Gideon\\Project1Gideon\\Project1Gideon.csproj",
         "projectName": "Project1Gideon",
-        "projectPath": "E:\\B.I.T\\Programming2\\Project 1 Gideon\\Project1Gideon\\Project1Gideon.csproj",
+        "projectPath": "E:\\B.I.T\\Programming2\\Project1 Assesment Gideon\\-Project-1-ID511001-Programming-2-Gideon\\Project1Gideon\\Project1Gideon.csproj",
         "packagesPath": "C:\\Users\\gideo\\.nuget\\packages\\",
-        "outputPath": "E:\\B.I.T\\Programming2\\Project 1 Gideon\\Project1Gideon\\obj\\",
+        "outputPath": "E:\\B.I.T\\Programming2\\Project1 Assesment Gideon\\-Project-1-ID511001-Programming-2-Gideon\\Project1Gideon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
