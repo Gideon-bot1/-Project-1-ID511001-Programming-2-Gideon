@@ -39,7 +39,7 @@
             btn9DisplayLecturerDetails = new Button();
             btn10AddALearner = new Button();
             btn11AddALecturer = new Button();
-            btn12ReomoveALecturer = new Button();
+            btn12RemoveALecturer = new Button();
             btnCalculations = new Button();
             btnExit = new Button();
             dgvDisplayInfo = new DataGridView();
@@ -64,12 +64,22 @@
             lblPosition = new Label();
             cmbPosition = new ComboBox();
             btnSaveLecturer = new Button();
+            lblLecturerID = new Label();
+            tbxLecturerID = new TextBox();
+            btnRemove = new Button();
+            label1 = new Label();
+            lblLecturerName = new Label();
+            btnSearch = new Button();
+            btnYes = new Button();
+            btnCancel = new Button();
+            lblAreYouSure = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvDisplayInfo).BeginInit();
             SuspendLayout();
             // 
             // btn1DisplayCourseDetails
             // 
             btn1DisplayCourseDetails.BackColor = Color.DarkGray;
+            btn1DisplayCourseDetails.Cursor = Cursors.Hand;
             btn1DisplayCourseDetails.Font = new Font("Segoe UI", 11F);
             btn1DisplayCourseDetails.Location = new Point(12, 12);
             btn1DisplayCourseDetails.Name = "btn1DisplayCourseDetails";
@@ -83,6 +93,7 @@
             // btn2DisplayAllMarks
             // 
             btn2DisplayAllMarks.BackColor = Color.DarkGray;
+            btn2DisplayAllMarks.Cursor = Cursors.Hand;
             btn2DisplayAllMarks.Font = new Font("Segoe UI", 11F);
             btn2DisplayAllMarks.Location = new Point(12, 68);
             btn2DisplayAllMarks.Name = "btn2DisplayAllMarks";
@@ -96,6 +107,7 @@
             // btn3DisplayAllGrades
             // 
             btn3DisplayAllGrades.BackColor = Color.DarkGray;
+            btn3DisplayAllGrades.Cursor = Cursors.Hand;
             btn3DisplayAllGrades.FlatAppearance.BorderColor = Color.Black;
             btn3DisplayAllGrades.Font = new Font("Segoe UI", 11F);
             btn3DisplayAllGrades.Location = new Point(12, 124);
@@ -110,6 +122,7 @@
             // btn4DisplayHighestMarks
             // 
             btn4DisplayHighestMarks.BackColor = Color.DarkGray;
+            btn4DisplayHighestMarks.Cursor = Cursors.Hand;
             btn4DisplayHighestMarks.Font = new Font("Segoe UI", 11F);
             btn4DisplayHighestMarks.Location = new Point(12, 180);
             btn4DisplayHighestMarks.Name = "btn4DisplayHighestMarks";
@@ -123,6 +136,7 @@
             // btn5DisplayLowestMarks
             // 
             btn5DisplayLowestMarks.BackColor = Color.DarkGray;
+            btn5DisplayLowestMarks.Cursor = Cursors.Hand;
             btn5DisplayLowestMarks.Font = new Font("Segoe UI", 11F);
             btn5DisplayLowestMarks.Location = new Point(12, 236);
             btn5DisplayLowestMarks.Name = "btn5DisplayLowestMarks";
@@ -136,6 +150,7 @@
             // btn6DisplayFailMarks
             // 
             btn6DisplayFailMarks.BackColor = Color.DarkGray;
+            btn6DisplayFailMarks.Cursor = Cursors.Hand;
             btn6DisplayFailMarks.Font = new Font("Segoe UI", 11F);
             btn6DisplayFailMarks.Location = new Point(12, 292);
             btn6DisplayFailMarks.Name = "btn6DisplayFailMarks";
@@ -149,6 +164,7 @@
             // btn7DisplayAvgMarks
             // 
             btn7DisplayAvgMarks.BackColor = Color.DarkGray;
+            btn7DisplayAvgMarks.Cursor = Cursors.Hand;
             btn7DisplayAvgMarks.Font = new Font("Segoe UI", 11F);
             btn7DisplayAvgMarks.Location = new Point(12, 348);
             btn7DisplayAvgMarks.Name = "btn7DisplayAvgMarks";
@@ -162,6 +178,7 @@
             // btn8DisplayAvgGrades
             // 
             btn8DisplayAvgGrades.BackColor = Color.DarkGray;
+            btn8DisplayAvgGrades.Cursor = Cursors.Hand;
             btn8DisplayAvgGrades.Font = new Font("Segoe UI", 11F);
             btn8DisplayAvgGrades.Location = new Point(12, 404);
             btn8DisplayAvgGrades.Name = "btn8DisplayAvgGrades";
@@ -175,6 +192,7 @@
             // btn9DisplayLecturerDetails
             // 
             btn9DisplayLecturerDetails.BackColor = Color.DarkGray;
+            btn9DisplayLecturerDetails.Cursor = Cursors.Hand;
             btn9DisplayLecturerDetails.Font = new Font("Segoe UI", 11F);
             btn9DisplayLecturerDetails.Location = new Point(12, 460);
             btn9DisplayLecturerDetails.Name = "btn9DisplayLecturerDetails";
@@ -188,6 +206,7 @@
             // btn10AddALearner
             // 
             btn10AddALearner.BackColor = Color.DarkGray;
+            btn10AddALearner.Cursor = Cursors.Hand;
             btn10AddALearner.Font = new Font("Segoe UI", 11F);
             btn10AddALearner.Location = new Point(12, 516);
             btn10AddALearner.Name = "btn10AddALearner";
@@ -201,6 +220,7 @@
             // btn11AddALecturer
             // 
             btn11AddALecturer.BackColor = Color.DarkGray;
+            btn11AddALecturer.Cursor = Cursors.Hand;
             btn11AddALecturer.Font = new Font("Segoe UI", 11F);
             btn11AddALecturer.Location = new Point(12, 574);
             btn11AddALecturer.Name = "btn11AddALecturer";
@@ -211,21 +231,24 @@
             btn11AddALecturer.UseVisualStyleBackColor = false;
             btn11AddALecturer.Click += btn11AddALecturer_Click;
             // 
-            // btn12ReomoveALecturer
+            // btn12RemoveALecturer
             // 
-            btn12ReomoveALecturer.BackColor = Color.DarkGray;
-            btn12ReomoveALecturer.Font = new Font("Segoe UI", 11F);
-            btn12ReomoveALecturer.Location = new Point(12, 630);
-            btn12ReomoveALecturer.Name = "btn12ReomoveALecturer";
-            btn12ReomoveALecturer.Size = new Size(203, 50);
-            btn12ReomoveALecturer.TabIndex = 11;
-            btn12ReomoveALecturer.Text = "12. Remove a Lecturer";
-            btn12ReomoveALecturer.TextAlign = ContentAlignment.MiddleLeft;
-            btn12ReomoveALecturer.UseVisualStyleBackColor = false;
+            btn12RemoveALecturer.BackColor = Color.DarkGray;
+            btn12RemoveALecturer.Cursor = Cursors.Hand;
+            btn12RemoveALecturer.Font = new Font("Segoe UI", 11F);
+            btn12RemoveALecturer.Location = new Point(12, 630);
+            btn12RemoveALecturer.Name = "btn12RemoveALecturer";
+            btn12RemoveALecturer.Size = new Size(203, 50);
+            btn12RemoveALecturer.TabIndex = 11;
+            btn12RemoveALecturer.Text = "12. Remove a Lecturer";
+            btn12RemoveALecturer.TextAlign = ContentAlignment.MiddleLeft;
+            btn12RemoveALecturer.UseVisualStyleBackColor = false;
+            btn12RemoveALecturer.Click += btn12RemoveALecturer_Click;
             // 
             // btnCalculations
             // 
             btnCalculations.BackColor = Color.DarkGray;
+            btnCalculations.Cursor = Cursors.Hand;
             btnCalculations.Font = new Font("Segoe UI", 11F);
             btnCalculations.Location = new Point(12, 686);
             btnCalculations.Name = "btnCalculations";
@@ -238,6 +261,7 @@
             // btnExit
             // 
             btnExit.BackColor = Color.DarkGray;
+            btnExit.Cursor = Cursors.Hand;
             btnExit.Font = new Font("Segoe UI", 11F);
             btnExit.Location = new Point(12, 742);
             btnExit.Name = "btnExit";
@@ -278,6 +302,7 @@
             lblFirstName.Size = new Size(134, 32);
             lblFirstName.TabIndex = 17;
             lblFirstName.Text = "First Name:";
+            lblFirstName.TextAlign = ContentAlignment.MiddleLeft;
             lblFirstName.Visible = false;
             // 
             // lblLastName
@@ -291,6 +316,7 @@
             lblLastName.Size = new Size(131, 32);
             lblLastName.TabIndex = 18;
             lblLastName.Text = "Last Name:";
+            lblLastName.TextAlign = ContentAlignment.MiddleLeft;
             lblLastName.Visible = false;
             // 
             // lblCourse
@@ -304,6 +330,7 @@
             lblCourse.Size = new Size(93, 32);
             lblCourse.TabIndex = 19;
             lblCourse.Text = "Course:";
+            lblCourse.TextAlign = ContentAlignment.MiddleLeft;
             lblCourse.Visible = false;
             // 
             // lblMark1
@@ -317,6 +344,7 @@
             lblMark1.Size = new Size(246, 32);
             lblMark1.TabIndex = 20;
             lblMark1.Text = "Assesment Mark One:";
+            lblMark1.TextAlign = ContentAlignment.MiddleLeft;
             lblMark1.Visible = false;
             // 
             // lblMark2
@@ -330,6 +358,7 @@
             lblMark2.Size = new Size(244, 32);
             lblMark2.TabIndex = 21;
             lblMark2.Text = "Assesment Mark Two:";
+            lblMark2.TextAlign = ContentAlignment.MiddleLeft;
             lblMark2.Visible = false;
             // 
             // lblMark3
@@ -343,6 +372,7 @@
             lblMark3.Size = new Size(262, 32);
             lblMark3.TabIndex = 22;
             lblMark3.Text = "Assesment Mark Three:";
+            lblMark3.TextAlign = ContentAlignment.MiddleLeft;
             lblMark3.Visible = false;
             // 
             // lblMark4
@@ -356,6 +386,7 @@
             lblMark4.Size = new Size(249, 32);
             lblMark4.TabIndex = 23;
             lblMark4.Text = "Assesment Mark Four:";
+            lblMark4.TextAlign = ContentAlignment.MiddleLeft;
             lblMark4.Visible = false;
             // 
             // lblMark5
@@ -369,6 +400,7 @@
             lblMark5.Size = new Size(244, 32);
             lblMark5.TabIndex = 24;
             lblMark5.Text = "Assesment Mark Five:";
+            lblMark5.TextAlign = ContentAlignment.MiddleLeft;
             lblMark5.Visible = false;
             // 
             // btnSaveLearner
@@ -470,6 +502,7 @@
             lblPosition.Size = new Size(103, 32);
             lblPosition.TabIndex = 34;
             lblPosition.Text = "Position:";
+            lblPosition.TextAlign = ContentAlignment.MiddleLeft;
             lblPosition.Visible = false;
             // 
             // cmbPosition
@@ -477,7 +510,7 @@
             cmbPosition.Cursor = Cursors.Hand;
             cmbPosition.FormattingEnabled = true;
             cmbPosition.Location = new Point(538, 265);
-            cmbPosition.MaxDropDownItems = 3;
+            cmbPosition.MaxDropDownItems = 5;
             cmbPosition.Name = "cmbPosition";
             cmbPosition.Size = new Size(230, 23);
             cmbPosition.TabIndex = 35;
@@ -489,13 +522,141 @@
             btnSaveLecturer.Cursor = Cursors.Hand;
             btnSaveLecturer.FlatAppearance.BorderColor = Color.Black;
             btnSaveLecturer.Font = new Font("Segoe UI", 11F);
-            btnSaveLecturer.Location = new Point(339, 530);
+            btnSaveLecturer.Location = new Point(232, 306);
             btnSaveLecturer.Name = "btnSaveLecturer";
             btnSaveLecturer.Size = new Size(101, 36);
             btnSaveLecturer.TabIndex = 36;
             btnSaveLecturer.Text = "Save";
             btnSaveLecturer.UseVisualStyleBackColor = false;
             btnSaveLecturer.Visible = false;
+            btnSaveLecturer.Click += btnSaveLecturer_Click;
+            // 
+            // lblLecturerID
+            // 
+            lblLecturerID.AutoSize = true;
+            lblLecturerID.BackColor = Color.FromArgb(204, 205, 203);
+            lblLecturerID.Font = new Font("Segoe UI", 18F);
+            lblLecturerID.ImageAlign = ContentAlignment.MiddleLeft;
+            lblLecturerID.Location = new Point(232, 60);
+            lblLecturerID.Name = "lblLecturerID";
+            lblLecturerID.Size = new Size(602, 32);
+            lblLecturerID.TabIndex = 37;
+            lblLecturerID.Text = "Please enter the ID of the lecturer you want to remove:";
+            lblLecturerID.TextAlign = ContentAlignment.MiddleLeft;
+            lblLecturerID.Visible = false;
+            // 
+            // tbxLecturerID
+            // 
+            tbxLecturerID.Cursor = Cursors.IBeam;
+            tbxLecturerID.Location = new Point(840, 68);
+            tbxLecturerID.Name = "tbxLecturerID";
+            tbxLecturerID.Size = new Size(64, 23);
+            tbxLecturerID.TabIndex = 38;
+            tbxLecturerID.Visible = false;
+            // 
+            // btnRemove
+            // 
+            btnRemove.BackColor = Color.DarkGray;
+            btnRemove.Cursor = Cursors.Hand;
+            btnRemove.FlatAppearance.BorderColor = Color.Black;
+            btnRemove.Font = new Font("Segoe UI", 11F);
+            btnRemove.Location = new Point(232, 130);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(131, 29);
+            btnRemove.TabIndex = 39;
+            btnRemove.Text = "Remove Lecturer";
+            btnRemove.UseVisualStyleBackColor = false;
+            btnRemove.Visible = false;
+            btnRemove.Click += btnRemove_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(204, 205, 203);
+            label1.Font = new Font("Segoe UI", 18F);
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(910, 110);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 32);
+            label1.TabIndex = 40;
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            label1.Visible = false;
+            // 
+            // lblLecturerName
+            // 
+            lblLecturerName.AutoSize = true;
+            lblLecturerName.BackColor = Color.FromArgb(204, 205, 203);
+            lblLecturerName.Cursor = Cursors.Hand;
+            lblLecturerName.Font = new Font("Segoe UI", 17F);
+            lblLecturerName.ImageAlign = ContentAlignment.MiddleLeft;
+            lblLecturerName.Location = new Point(910, 61);
+            lblLecturerName.Name = "lblLecturerName";
+            lblLecturerName.Size = new Size(102, 31);
+            lblLecturerName.TabIndex = 41;
+            lblLecturerName.Text = "Lecturer:";
+            lblLecturerName.TextAlign = ContentAlignment.MiddleLeft;
+            lblLecturerName.Visible = false;
+            lblLecturerName.Click += lblLecturerName_Click;
+            // 
+            // btnSearch
+            // 
+            btnSearch.BackColor = Color.DarkGray;
+            btnSearch.Cursor = Cursors.Hand;
+            btnSearch.FlatAppearance.BorderColor = Color.Black;
+            btnSearch.Font = new Font("Segoe UI", 11F);
+            btnSearch.Location = new Point(232, 95);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(93, 29);
+            btnSearch.TabIndex = 42;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Visible = false;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // btnYes
+            // 
+            btnYes.BackColor = Color.DarkGray;
+            btnYes.Cursor = Cursors.Hand;
+            btnYes.FlatAppearance.BorderColor = Color.Black;
+            btnYes.Font = new Font("Segoe UI", 11F);
+            btnYes.Location = new Point(369, 130);
+            btnYes.Name = "btnYes";
+            btnYes.Size = new Size(73, 29);
+            btnYes.TabIndex = 43;
+            btnYes.Text = "Yes";
+            btnYes.UseVisualStyleBackColor = false;
+            btnYes.Visible = false;
+            btnYes.Click += btnYes_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.BackColor = Color.DarkGray;
+            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.FlatAppearance.BorderColor = Color.Black;
+            btnCancel.Font = new Font("Segoe UI", 11F);
+            btnCancel.Location = new Point(448, 130);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(73, 29);
+            btnCancel.TabIndex = 44;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Visible = false;
+            btnCancel.Click += btnCancel_Click;
+            // 
+            // lblAreYouSure
+            // 
+            lblAreYouSure.AutoSize = true;
+            lblAreYouSure.BackColor = Color.FromArgb(204, 205, 203);
+            lblAreYouSure.Cursor = Cursors.Hand;
+            lblAreYouSure.Font = new Font("Segoe UI", 16F);
+            lblAreYouSure.ImageAlign = ContentAlignment.MiddleLeft;
+            lblAreYouSure.Location = new Point(346, 94);
+            lblAreYouSure.Name = "lblAreYouSure";
+            lblAreYouSure.Size = new Size(466, 30);
+            lblAreYouSure.TabIndex = 45;
+            lblAreYouSure.Text = "Are you sure you want to remove this lecturer?";
+            lblAreYouSure.TextAlign = ContentAlignment.MiddleLeft;
+            lblAreYouSure.Visible = false;
             // 
             // Form1
             // 
@@ -503,6 +664,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(204, 205, 203);
             ClientSize = new Size(1776, 1006);
+            Controls.Add(lblAreYouSure);
+            Controls.Add(btnCancel);
+            Controls.Add(btnYes);
+            Controls.Add(btnSearch);
+            Controls.Add(lblLecturerName);
+            Controls.Add(label1);
+            Controls.Add(btnRemove);
+            Controls.Add(tbxLecturerID);
+            Controls.Add(lblLecturerID);
             Controls.Add(btnSaveLecturer);
             Controls.Add(cmbPosition);
             Controls.Add(lblPosition);
@@ -527,7 +697,7 @@
             Controls.Add(dgvDisplayInfo);
             Controls.Add(btnExit);
             Controls.Add(btnCalculations);
-            Controls.Add(btn12ReomoveALecturer);
+            Controls.Add(btn12RemoveALecturer);
             Controls.Add(btn11AddALecturer);
             Controls.Add(btn10AddALearner);
             Controls.Add(btn9DisplayLecturerDetails);
@@ -559,7 +729,7 @@
         private Button btn9DisplayLecturerDetails;
         private Button btn10AddALearner;
         private Button btn11AddALecturer;
-        private Button btn12ReomoveALecturer;
+        private Button btn12RemoveALecturer;
         private Button btnCalculations;
         private Button btnExit;
         private DataGridView dgvDisplayInfo;
@@ -584,5 +754,14 @@
         private Label lblPosition;
         private ComboBox cmbPosition;
         private Button btnSaveLecturer;
+        private Label lblLecturerID;
+        private TextBox tbxLecturerID;
+        private Button btnRemove;
+        private Label label1;
+        private Label lblLecturerName;
+        private Button btnSearch;
+        private Button btnYes;
+        private Button btnCancel;
+        private Label lblAreYouSure;
     }
 }

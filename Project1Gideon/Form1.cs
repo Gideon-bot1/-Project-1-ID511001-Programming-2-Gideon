@@ -7,6 +7,7 @@ namespace Project1Gideon
         private List<Course> courses;
         private List<Learner> learners;
         private List<Lecturer> lecturers;
+        private Lecturer selectedLecturer;
         public Form1()
         {
             InitializeComponent();
@@ -20,6 +21,12 @@ namespace Project1Gideon
                 cmbCourse.Items.Add(course.Code + " " + course.Name);
             }
 
+            cmbPosition.Items.Add(EPosition.Lecturer);
+            cmbPosition.Items.Add(EPosition.Senior_Lecturer);
+            cmbPosition.Items.Add(EPosition.Principal_Lecturer);
+            cmbPosition.Items.Add(EPosition.Assosciate_Professor);
+            cmbPosition.Items.Add(EPosition.Professor);
+
             learners = new List<Learner>();
             lecturers = new List<Lecturer>();
 
@@ -27,6 +34,7 @@ namespace Project1Gideon
             DataHandler.ReadLearnersFromFile("learners.txt", learners, courses);
             DataHandler.ReadLecturersFromFile("lecturers.txt", lecturers, courses);
         }
+        //Hides DataGridView and displays add learner inputs
         private void ShowLearnerInputs()
         {
             lblDetails.Text = "Add Learner:";
@@ -49,6 +57,7 @@ namespace Project1Gideon
             btnSaveLearner.Visible = true;
             cmbCourse.Visible = true;
         }
+        //Hides Learner inputs
         private void HideLearnerInputs()
         {
             lblFirstName.Visible = false;
@@ -69,6 +78,7 @@ namespace Project1Gideon
             btnSaveLearner.Visible = false;
             cmbCourse.Visible = false;
         }
+        //Clears add learner inputs so another learner can be added
         private void ClearAddLearner()
         {
             tbxFirstName.Clear();
@@ -80,10 +90,10 @@ namespace Project1Gideon
             tbxMark4.Clear();
             tbxMark5.Clear();
         }
+        //Displays Lecturer inputs and hides DGV
         private void ShowLecturerInputs()
         {
-            dgvDisplayInfo.Rows.Clear();
-            dgvDisplayInfo.Columns.Clear();
+            //I deleted cleardgv and now have an error
             dgvDisplayInfo.Visible = false;
             lblDetails.Text = "Add Lecturer:";
             lblFirstName.Visible = true;
@@ -94,7 +104,9 @@ namespace Project1Gideon
             cmbCourse.Visible = true;
             lblPosition.Visible = true;
             cmbPosition.Visible = true;
+            btnSaveLecturer.Visible = true;
         }
+        //Hides Lecturer inputs
         private void HideLecturerInputs()
         {
             lblFirstName.Visible = false;
@@ -105,11 +117,64 @@ namespace Project1Gideon
             cmbCourse.Visible = false;
             lblPosition.Visible = false;
             cmbPosition.Visible = false;
+            btnSaveLecturer.Visible = false;
         }
+        private void ClearAddLecturer()
+        {
+            tbxFirstName.Clear();
+            tbxLastName.Clear();
+            cmbCourse.SelectedIndex = -1;
+            cmbPosition.SelectedIndex = -1;
+        }
+        private void ShowRemoveLecturer()
+        {
+            dgvDisplayInfo.Visible = false;
+            lblDetails.Text = "Remove Lecturer:";
+            lblLecturerID.Visible = true;
+            tbxLecturerID.Visible = true;
+            btnRemove.Visible = true;
+            lblLecturerName.Visible = true;
+            btnSearch.Visible = true;
+        }
+        private void HideRemoveLecturer()
+        {
+            lblLecturerID.Visible = false;
+            tbxLecturerID.Visible = false;
+            btnRemove.Visible = false;
+            lblLecturerName.Visible = false;
+            btnSearch.Visible = false;
+            btnYes.Visible = false;
+            btnCancel.Visible = false;
+            lblAreYouSure.Visible = false;
+        }
+        //Clears DataGridView
         private void ClearDgv()
         {
             dgvDisplayInfo.Rows.Clear();
             dgvDisplayInfo.Columns.Clear();
+        }
+
+        //Checks if Id is avaliable 
+        private int CheckLecturerID()
+        {
+            int id = 1;
+            bool idExists = true;
+
+            while (idExists)
+            {
+                idExists = false;
+
+                foreach (Lecturer existingLecturer in lecturers)
+                {                         //== is equal to
+                    if (existingLecturer.Id == id)
+                    {
+                        id++;
+                        idExists = true;
+                        break;
+                    }
+                }
+            }
+            return id;
         }
         private void btn1DisplayCourseDetails_Click(object sender, EventArgs e)
         {
@@ -118,6 +183,7 @@ namespace Project1Gideon
             lblDetails.Text = "Display: Course Details";
             HideLearnerInputs();
             HideLecturerInputs();
+            HideRemoveLecturer();
 
             dgvDisplayInfo.Columns.Add("Course", "Course");
             dgvDisplayInfo.Columns.Add("Description", "Description");
@@ -137,7 +203,6 @@ namespace Project1Gideon
                 dgvDisplayInfo.Rows[rowIdx].Cells["Institution"].Value = course.Department.Institution.Name;
                 dgvDisplayInfo.Rows[rowIdx].Cells["Department"].Value = course.Department.DepartmentName;
             }
-
             //Sizes columns automatically to fit all info
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
@@ -149,6 +214,7 @@ namespace Project1Gideon
             lblDetails.Text = "Display: All Marks";
             HideLearnerInputs();
             HideLecturerInputs();
+            HideRemoveLecturer();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -173,6 +239,7 @@ namespace Project1Gideon
             lblDetails.Text = "Display: All Grades";
             HideLearnerInputs();
             HideLecturerInputs();
+            HideRemoveLecturer();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -189,6 +256,7 @@ namespace Project1Gideon
             }
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
         private void btn4DisplayHighestMarks_Click(object sender, EventArgs e)
         {
             ClearDgv();
@@ -196,6 +264,7 @@ namespace Project1Gideon
             lblDetails.Text = "Display: Highest Marks";
             HideLearnerInputs();
             HideLecturerInputs();
+            HideRemoveLecturer();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -220,6 +289,7 @@ namespace Project1Gideon
             lblDetails.Text = "Display: Lowest Marks";
             HideLearnerInputs();
             HideLecturerInputs();
+            HideRemoveLecturer();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -244,6 +314,7 @@ namespace Project1Gideon
             lblDetails.Text = "Display: Fail Marks";
             HideLearnerInputs();
             HideLecturerInputs();
+            HideRemoveLecturer();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -268,6 +339,7 @@ namespace Project1Gideon
             lblDetails.Text = "Display: Average Marks";
             HideLearnerInputs();
             HideLecturerInputs();
+            HideRemoveLecturer();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -292,6 +364,7 @@ namespace Project1Gideon
             lblDetails.Text = "Display: Average Grades";
             HideLearnerInputs();
             HideLecturerInputs();
+            HideRemoveLecturer();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -316,6 +389,7 @@ namespace Project1Gideon
             lblDetails.Text = "Display: Lecturer Details";
             HideLearnerInputs();
             HideLecturerInputs();
+            HideRemoveLecturer();
 
             dgvDisplayInfo.Columns.Add("ID", "ID");
             dgvDisplayInfo.Columns.Add("Name", "Name");
@@ -343,13 +417,16 @@ namespace Project1Gideon
         {
             HideLecturerInputs();
             ShowLearnerInputs();
+            HideRemoveLecturer();
         }
 
         private void btn11AddALecturer_Click(object sender, EventArgs e)
         {
             HideLearnerInputs();
             ShowLecturerInputs();
+            HideRemoveLecturer();
         }
+
         private void AddLearner(Learner learner)
         {
             learners.Add(learner);
@@ -383,6 +460,120 @@ namespace Project1Gideon
             AddLearner(learner);
             MessageBox.Show("Learner Saved");
             ClearAddLearner();
+        }
+
+        private void AddLecturer(Lecturer lecturer)
+        {
+            lecturers.Add(lecturer);
+            DataHandler.SaveLecturersToFile("lecturers.txt", lecturers, courses);
+        }
+
+        private void btnSaveLecturer_Click(object sender, EventArgs e)
+        {
+            String firstName = tbxFirstName.Text;
+            String lastName = tbxLastName.Text;
+            int courseNum = cmbCourse.SelectedIndex;
+            Course course = courses[courseNum];
+            int positionNum = cmbPosition.SelectedIndex;
+            EPosition position = (EPosition)positionNum;
+
+            ESalary salary;
+
+            switch (position)
+            {
+                case EPosition.Lecturer:
+                    salary = ESalary.Lecturer_Salary;
+                    break;
+
+                case EPosition.Senior_Lecturer:
+                    salary = ESalary.Senior_Lecturer_Salary;
+                    break;
+
+                case EPosition.Principal_Lecturer:
+                    salary = ESalary.Principal_Lecturer_Salary;
+                    break;
+
+                case EPosition.Assosciate_Professor:
+                    salary = ESalary.Associate_Professor_Salary;
+                    break;
+
+                case EPosition.Professor:
+                    salary = ESalary.Professor_Salary;
+                    break;
+                default:
+                    salary = ESalary.Lecturer_Salary;
+                    MessageBox.Show("Your Lecturer has been givin a Lecturers Salary.\nPossible issue with Position assignment");
+                    break;
+            }
+
+            int id = CheckLecturerID();
+
+            Lecturer lecturer = new Lecturer(id, firstName, lastName, position, salary, course);
+
+            AddLecturer(lecturer);
+            MessageBox.Show("Lecturer Saved");
+            ClearAddLecturer();
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            lblAreYouSure.Visible = true;
+            btnYes.Visible = true;
+            btnCancel.Visible = true;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(tbxLecturerID.Text);
+            bool found = false;
+            foreach (Lecturer lecturer in lecturers)
+            {
+                if (lecturer.Id == id)
+                {
+                    selectedLecturer = lecturer;
+                    lblLecturerName.Text = "Lecturer: " + lecturer.FirstName + " " + lecturer.LastName;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                selectedLecturer = null;
+                lblLecturerName.Text = "The ID you hae entered is not registered in our system";
+            }
+        }
+        private void btnYes_Click(object sender, EventArgs e)
+        {
+            lecturers.Remove(selectedLecturer);
+            DataHandler.SaveLecturersToFile("lecturers.txt", lecturers, courses);
+            MessageBox.Show("The lecturer you selected was removed");
+            lblAreYouSure.Visible = false;
+            btnYes.Visible = false;
+            btnCancel.Visible = false;
+            lblLecturerName.Text = "Lecturer:";
+            tbxLecturerID.Clear();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            lblAreYouSure.Visible = false;
+            btnYes.Visible = false;
+            btnCancel.Visible = false;
+        }
+
+        private void lblLecturerName_Click(object sender, EventArgs e)
+        {
+            if (selectedLecturer != null)
+            {
+                MessageBox.Show(selectedLecturer.LecturerInfo());
+            }
+        }
+
+        private void btn12RemoveALecturer_Click(object sender, EventArgs e)
+        {
+            HideLearnerInputs();
+            HideLecturerInputs();
+            ShowRemoveLecturer();
         }
     }
 }
