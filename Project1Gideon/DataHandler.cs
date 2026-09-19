@@ -25,89 +25,125 @@ namespace Project1Gideon
         //Reads Learner information and adds them to the learner list
         public static void ReadLearnersFromFile(string filepath, List<Learner> learners, List<Course> courses)
         {
-            List<string> lines = File.ReadAllLines(filepath).ToList();
-            foreach (string line in lines)
+            try
             {
-                string[] learnerDetails = line.Split(',');
-                int id = int.Parse(learnerDetails[0]);
-                string firstName = learnerDetails[1];
-                string lastName = learnerDetails[2];
-                int courseNum = int.Parse(learnerDetails[3]);
-
-                List<int> marks = new List<int>()
+                List<string> lines = File.ReadAllLines(filepath).ToList();
+                foreach (string line in lines)
                 {
-                    Convert.ToInt32(learnerDetails[4]),
-                    Convert.ToInt32(learnerDetails[5]),
-                    Convert.ToInt32(learnerDetails[6]),
-                    Convert.ToInt32(learnerDetails[7]),
-                    Convert.ToInt32(learnerDetails[8])
-                };
+                    string[] learnerDetails = line.Split(',');
+                    int id = int.Parse(learnerDetails[0]);
+                    string firstName = learnerDetails[1];
+                    string lastName = learnerDetails[2];
+                    int courseNum = int.Parse(learnerDetails[3]);
 
-                CourseAssessmentMark assessmentMarks = new CourseAssessmentMark(courses[courseNum], marks);
-                Learner learner = new Learner(id, firstName, lastName, assessmentMarks);
-                learners.Add(learner);
+                    List<int> marks = new List<int>()
+                    {
+                        Convert.ToInt32(learnerDetails[4]),
+                        Convert.ToInt32(learnerDetails[5]),
+                        Convert.ToInt32(learnerDetails[6]),
+                        Convert.ToInt32(learnerDetails[7]),
+                        Convert.ToInt32(learnerDetails[8])
+                    };
+
+                    CourseAssessmentMark assessmentMarks = new CourseAssessmentMark(courses[courseNum], marks);
+                    Learner learner = new Learner(id, firstName, lastName, assessmentMarks);
+                    learners.Add(learner);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("The Learner.txt file could not be found.");
+            }
+            catch
+            {
+                MessageBox.Show("There was an error reading the Learners.txt file.");
             }
         }
         //Reads lecturer information and adds them to lecturer list
         public static void ReadLecturersFromFile(string filepath, List<Lecturer> lecturers, List<Course> courses)
         {
-            List<string> lines = File.ReadAllLines(filepath).ToList();
-            foreach (string line in lines)
+            try
             {
-                string[] lecturerDetails = line.Split(',');
-                int id = int.Parse(lecturerDetails[0]);
-                string firstName = lecturerDetails[1];
-                string lastName = lecturerDetails[2];
-                EPosition position = (EPosition)int.Parse(lecturerDetails[3]);
-                ESalary salary = (ESalary)int.Parse(lecturerDetails[4]);
-                int courseNum = int.Parse(lecturerDetails[5]);
+                List<string> lines = File.ReadAllLines(filepath).ToList();
+                foreach (string line in lines)
+                {
+                    string[] lecturerDetails = line.Split(',');
+                    int id = int.Parse(lecturerDetails[0]);
+                    string firstName = lecturerDetails[1];
+                    string lastName = lecturerDetails[2];
+                    EPosition position = (EPosition)int.Parse(lecturerDetails[3]);
+                    ESalary salary = (ESalary)int.Parse(lecturerDetails[4]);
+                    int courseNum = int.Parse(lecturerDetails[5]);
 
-                Course course = courses[courseNum];
+                    Course course = courses[courseNum];
 
-                Lecturer lecturer = new Lecturer(id, firstName, lastName, position, salary, course);
-                lecturers.Add(lecturer);
+                    Lecturer lecturer = new Lecturer(id, firstName, lastName, position, salary, course);
+                    lecturers.Add(lecturer);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("The Lecturer.txt file could not be found.");
+            }
+            catch
+            {
+                MessageBox.Show("There was an error reading the Lecturers.txt file.");
             }
         }
         //Takes informaton from learners and course assessment marks then formats and saves them back into a .txt
         public static void SaveLearnersToFile(string filepath, List<Learner> learners, List<Course> courses)
         {
-            List<string> lines = new List<string>();
-
-            foreach (Learner learner in learners)
+            try
             {
-                CourseAssessmentMark assessmentMark = learner.CourseAssessmentMark;
-                List<int> marks = assessmentMark.AllMarks;
-                int id = learner.Id;
-                string firstName = learner.FirstName;
-                string lastName = learner.LastName;
-                int courseNum = courses.IndexOf(assessmentMark.Course);
+                List<string> lines = new List<string>();
 
-                string line = $"{id},{firstName},{lastName},{courseNum},{marks[0]},{marks[1]},{marks[2]},{marks[3]},{marks[4]}";
-                lines.Add(line);
+                foreach (Learner learner in learners)
+                {
+                    CourseAssessmentMark assessmentMark = learner.CourseAssessmentMark;
+                    List<int> marks = assessmentMark.AllMarks;
+                    int id = learner.Id;
+                    string firstName = learner.FirstName;
+                    string lastName = learner.LastName;
+                    int courseNum = courses.IndexOf(assessmentMark.Course);
+
+                    string line = $"{id},{firstName},{lastName},{courseNum},{marks[0]},{marks[1]},{marks[2]},{marks[3]},{marks[4]}";
+                    lines.Add(line);
+                }
+                File.WriteAllLines(filepath, lines);
             }
-            File.WriteAllLines(filepath, lines);
+            catch
+            {
+                MessageBox.Show("There was an error saving to the Learners.txt file");
+            }
         }
         //Takes information from Lecturers, converts enums to int values, formats and saves them to a .txt 
         public static void SaveLecturersToFile(string filepath, List<Lecturer> lecturers, List<Course> courses)
         {
-            List<string> lines = new List<string>();
-            foreach (Lecturer lecturer in lecturers)
+            try
             {
-                int id = lecturer.Id;
-                string firstName = lecturer.FirstName;
-                string lastName = lecturer.LastName;
-                EPosition position = lecturer.Position;
-                ESalary salary = lecturer.Salary;
-                Course course = lecturer.Course;
-                int courseNum = courses.IndexOf(course);
+                List<string> lines = new List<string>();
+                foreach (Lecturer lecturer in lecturers)
+                {
+                    int id = lecturer.Id;
+                    string firstName = lecturer.FirstName;
+                    string lastName = lecturer.LastName;
+                    EPosition position = lecturer.Position;
+                    ESalary salary = lecturer.Salary;
+                    Course course = lecturer.Course;
+                    int courseNum = courses.IndexOf(course);
 
-                int positionNum = (int)position;
-                int salaryNum = (int)salary;
+                    int positionNum = (int)position;
+                    int salaryNum = (int)salary;
 
-                string line = $"{id},{firstName},{lastName},{positionNum},{salaryNum},{courseNum}";
-                lines.Add(line);
+                    string line = $"{id},{firstName},{lastName},{positionNum},{salaryNum},{courseNum}";
+                    lines.Add(line);
+                }
+                File.WriteAllLines(filepath, lines);
             }
-            File.WriteAllLines(filepath, lines);
+            catch
+            {
+                MessageBox.Show("There was an error saving to the Lecturers.txt file.");
+            }
         }
     }
 }

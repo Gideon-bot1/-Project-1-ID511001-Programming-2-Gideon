@@ -8,7 +8,7 @@ namespace Project1Gideon
         private List<Learner> learners;
         private List<Lecturer> lecturers;
         //The ? after Lecturer means the variable is allowed to be null
-        private Lecturer selectedLecturer;
+        private Lecturer? selectedLecturer;
         public Form1()
         {
             InitializeComponent();
