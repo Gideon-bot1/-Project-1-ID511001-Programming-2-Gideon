@@ -7,6 +7,7 @@ namespace Project1Gideon
         private List<Course> courses;
         private List<Learner> learners;
         private List<Lecturer> lecturers;
+        //The ? after Lecturer means the variable is allowed to be null
         private Lecturer selectedLecturer;
         public Form1()
         {
@@ -539,7 +540,7 @@ namespace Project1Gideon
             if (!found)
             {
                 selectedLecturer = null;
-                lblLecturerName.Text = "The ID you hae entered is not registered in our system";
+                lblLecturerName.Text = "The ID you have entered is not registered in our system";
             }
         }
         private void btnYes_Click(object sender, EventArgs e)

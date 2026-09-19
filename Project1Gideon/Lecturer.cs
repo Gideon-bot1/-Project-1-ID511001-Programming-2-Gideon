@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+///<summary>
+///The Lecturer class inherits id, firstName and lastName from Person.
+///It adds the lecturers course, position and salary to Lecturer.
+///Controls access to the lecturers information with properties.
+///Returns a string so that other classes can display this information.
+/// </summary>
 namespace Project1Gideon
 {
     public class Lecturer : Person
@@ -19,11 +24,6 @@ namespace Project1Gideon
             this.course = course;
         }
 
-        public string LecturerInfo()
-        {
-            return $"ID: {id}\nName: {firstName} {lastName}\nPosition: {position}\nSalary: {salary}\nCourse: {course.CourseInfo()}";
-        }
-
         public EPosition Position
         {
             get { return position; }
@@ -36,6 +36,11 @@ namespace Project1Gideon
         public Course Course
         {
             get { return course; }
+        }
+
+        public string LecturerInfo()
+        {
+            return $"ID: {id}\nName: {firstName} {lastName}\nPosition: {position}\nSalary: {salary}\nCourse: {course.CourseInfo()}";
         }
     }
 }

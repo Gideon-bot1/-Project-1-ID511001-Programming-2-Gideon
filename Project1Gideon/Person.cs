@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/// <summary>
+/// Person is the parent class of lecturer and learner. Both have an id, firstName and lastName.
+/// This class creates a new Person object with an id, firstName and lastName.
+/// it uses public properties to control access to protected fields, so that other classes have access to the values but cannot change them.
+/// </summary>
 
 namespace Project1Gideon
 {
