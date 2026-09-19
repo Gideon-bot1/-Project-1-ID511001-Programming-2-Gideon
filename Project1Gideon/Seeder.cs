@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+///<summary>
+/// The Seeder class creates lists for Institution, Department and Course informtion.
+/// Populates each list with the relevant info.
+/// Returns each populated list so the info can be used by the class that called the method.
+/// </summary>
+
 namespace Project1Gideon
 {
     //Creates lists to store class information
