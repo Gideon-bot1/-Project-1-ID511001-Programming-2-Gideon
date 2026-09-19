@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace Project1Gideon
 {
     public partial class Form1 : Form
@@ -430,90 +432,123 @@ namespace Project1Gideon
 
         private void AddLearner(Learner learner)
         {
-            learners.Add(learner);
-            DataHandler.SaveLearnersToFile("learners.txt", learners, courses);
+            try
+            {
+                learners.Add(learner);
+                DataHandler.SaveLearnersToFile("learners.txt", learners, courses);
+            }
+            catch
+            {
+                MessageBox.Show("There was an error adding the learner.");
+            }
         }
 
         private void btnSaveLearner_Click(object sender, EventArgs e)
         {
-            //Dont forget to add error handling
+            try
+            {
+                string firstName = tbxFirstName.Text;
+                string lastName = tbxLastName.Text;
+                int courseNum = cmbCourse.SelectedIndex;
+                Course course = courses[courseNum];
 
-            string firstName = tbxFirstName.Text;
-            string lastName = tbxLastName.Text;
-            int courseNum = cmbCourse.SelectedIndex;
-            Course course = courses[courseNum];
+                int mark1 = Convert.ToInt32(tbxMark1.Text);
+                int mark2 = Convert.ToInt32(tbxMark2.Text);
+                int mark3 = Convert.ToInt32(tbxMark3.Text);
+                int mark4 = Convert.ToInt32(tbxMark4.Text);
+                int mark5 = Convert.ToInt32(tbxMark5.Text);
 
-            int mark1 = Convert.ToInt32(tbxMark1.Text);
-            int mark2 = Convert.ToInt32(tbxMark2.Text);
-            int mark3 = Convert.ToInt32(tbxMark3.Text);
-            int mark4 = Convert.ToInt32(tbxMark4.Text);
-            int mark5 = Convert.ToInt32(tbxMark5.Text);
+                List<int> marks = new List<int>()
+                { mark1, mark2, mark3, mark4, mark5 };
 
-            List<int> marks = new List<int>()
-            { mark1, mark2, mark3, mark4, mark5 };
+                CourseAssessmentMark assessmentMark = new CourseAssessmentMark(course, marks);
 
-            CourseAssessmentMark assessmentMark = new CourseAssessmentMark(course, marks);
+                int id = learners.Count + 1;
 
-            int id = learners.Count + 1;
+                Learner learner = new Learner(id, firstName, lastName, assessmentMark);
 
-            Learner learner = new Learner(id, firstName, lastName, assessmentMark);
-
-            AddLearner(learner);
-            MessageBox.Show("Learner Saved");
-            ClearAddLearner();
+                AddLearner(learner);
+                MessageBox.Show("Learner Saved");
+                ClearAddLearner();
+            }
+            catch
+            {
+                MessageBox.Show("There was an error saving the learner. Please check the information you entered is correct.");
+            }
         }
 
         private void AddLecturer(Lecturer lecturer)
         {
-            lecturers.Add(lecturer);
-            DataHandler.SaveLecturersToFile("lecturers.txt", lecturers, courses);
+            try
+            {
+                lecturers.Add(lecturer);
+                DataHandler.SaveLecturersToFile("lecturers.txt", lecturers, courses);
+            }
+            catch
+            {
+                MessageBox.Show("There was an error adding the lecturer.");
+            }
         }
 
         private void btnSaveLecturer_Click(object sender, EventArgs e)
         {
-            String firstName = tbxFirstName.Text;
-            String lastName = tbxLastName.Text;
-            int courseNum = cmbCourse.SelectedIndex;
-            Course course = courses[courseNum];
-            int positionNum = cmbPosition.SelectedIndex;
-            EPosition position = (EPosition)positionNum;
-
-            ESalary salary;
-
-            switch (position)
+            try
             {
-                case EPosition.Lecturer:
-                    salary = ESalary.Lecturer_Salary;
-                    break;
+                String firstName = tbxFirstName.Text;
+                String lastName = tbxLastName.Text;
+                int courseNum = cmbCourse.SelectedIndex;
+                Course course = courses[courseNum];
+                int positionNum = cmbPosition.SelectedIndex;
+                EPosition position = (EPosition)positionNum;
 
-                case EPosition.Senior_Lecturer:
-                    salary = ESalary.Senior_Lecturer_Salary;
-                    break;
+                ESalary salary;
 
-                case EPosition.Principal_Lecturer:
-                    salary = ESalary.Principal_Lecturer_Salary;
-                    break;
+                switch (position)
+                {
+                    case EPosition.Lecturer:
+                        salary = ESalary.Lecturer_Salary;
+                        break;
 
-                case EPosition.Assosciate_Professor:
-                    salary = ESalary.Associate_Professor_Salary;
-                    break;
+                    case EPosition.Senior_Lecturer:
+                        salary = ESalary.Senior_Lecturer_Salary;
+                        break;
 
-                case EPosition.Professor:
-                    salary = ESalary.Professor_Salary;
-                    break;
-                default:
-                    salary = ESalary.Lecturer_Salary;
-                    MessageBox.Show("Your Lecturer has been givin a Lecturers Salary.\nPossible issue with Position assignment");
-                    break;
+                    case EPosition.Principal_Lecturer:
+                        salary = ESalary.Principal_Lecturer_Salary;
+                        break;
+
+                    case EPosition.Assosciate_Professor:
+                        salary = ESalary.Associate_Professor_Salary;
+                        break;
+
+                    case EPosition.Professor:
+                        salary = ESalary.Professor_Salary;
+                        break;
+                    default:
+                        salary = ESalary.Lecturer_Salary;
+                        MessageBox.Show("Your Lecturer has been givin a Lecturers Salary.\nPossible issue with Position assignment");
+                        break;
+                }
+
+                int id = CheckLecturerID();
+
+                Lecturer lecturer = new Lecturer(id, firstName, lastName, position, salary, course);
+
+                AddLecturer(lecturer);
+                MessageBox.Show("Lecturer Saved");
+                ClearAddLecturer();
             }
+            catch
+            {
+                MessageBox.Show("There was an error saving the lecturer. Please check the information you entered is correct.");
+            }
+        }
 
-            int id = CheckLecturerID();
-
-            Lecturer lecturer = new Lecturer(id, firstName, lastName, position, salary, course);
-
-            AddLecturer(lecturer);
-            MessageBox.Show("Lecturer Saved");
-            ClearAddLecturer();
+        private void btn12RemoveALecturer_Click(object sender, EventArgs e)
+        {
+            HideLearnerInputs();
+            HideLecturerInputs();
+            ShowRemoveLecturer();
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -525,34 +560,55 @@ namespace Project1Gideon
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(tbxLecturerID.Text);
-            bool found = false;
-            foreach (Lecturer lecturer in lecturers)
+            try
             {
-                if (lecturer.Id == id)
+                int id = Convert.ToInt32(tbxLecturerID.Text);
+                bool found = false;
+                foreach (Lecturer lecturer in lecturers)
                 {
-                    selectedLecturer = lecturer;
-                    lblLecturerName.Text = "Lecturer: " + lecturer.FirstName + " " + lecturer.LastName;
-                    found = true;
-                    break;
+                    if (lecturer.Id == id)
+                    {
+                        selectedLecturer = lecturer;
+                        lblLecturerName.Text = "Lecturer: " + lecturer.FirstName + " " + lecturer.LastName;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    selectedLecturer = null;
+                    lblLecturerName.Text = "The ID you have entered is not registered in our system";
                 }
             }
-            if (!found)
+            catch
             {
-                selectedLecturer = null;
-                lblLecturerName.Text = "The ID you have entered is not registered in our system";
+                MessageBox.Show("Please enter a valid ID.");
             }
         }
         private void btnYes_Click(object sender, EventArgs e)
         {
-            lecturers.Remove(selectedLecturer);
-            DataHandler.SaveLecturersToFile("lecturers.txt", lecturers, courses);
-            MessageBox.Show("The lecturer you selected was removed");
-            lblAreYouSure.Visible = false;
-            btnYes.Visible = false;
-            btnCancel.Visible = false;
-            lblLecturerName.Text = "Lecturer:";
-            tbxLecturerID.Clear();
+            try
+            {
+                lecturers.Remove(selectedLecturer);
+                if (selectedLecturer != null)
+                {
+                    MessageBox.Show("The lecturer you selected was removed");
+                }
+                else
+                {
+                    MessageBox.Show("A lecturer was not selected");
+                }
+                DataHandler.SaveLecturersToFile("lecturers.txt", lecturers, courses);
+                lblAreYouSure.Visible = false;
+                btnYes.Visible = false;
+                btnCancel.Visible = false;
+                lblLecturerName.Text = "Lecturer:";
+                tbxLecturerID.Clear();
+            }
+            catch
+            {
+                MessageBox.Show("The was an error removing the lecturer.");
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -568,13 +624,6 @@ namespace Project1Gideon
             {
                 MessageBox.Show(selectedLecturer.LecturerInfo());
             }
-        }
-
-        private void btn12RemoveALecturer_Click(object sender, EventArgs e)
-        {
-            HideLearnerInputs();
-            HideLecturerInputs();
-            ShowRemoveLecturer();
         }
     }
 }
