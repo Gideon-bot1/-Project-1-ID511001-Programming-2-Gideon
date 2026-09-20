@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+///<summary>
+/// Contains the different lecturer position salarys as enums.
+/// </summary>
+
 namespace Project1Gideon
 {
     public enum ESalary

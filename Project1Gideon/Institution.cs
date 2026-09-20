@@ -4,6 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+///<summary>
+/// The Institution class stores name, region and country in a institution object.
+/// It contains a method that returns a public string that Form1.cs uses to display Department information.
+/// Its uses public properties to control the other classes access to private information.
+/// </summary>
+
+
 namespace Project1Gideon
 {
     public class Institution

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+///<summary>
+///Contains the different lecturer positions as enums.
+/// </summary>
 namespace Project1Gideon
 {
     public enum EPosition

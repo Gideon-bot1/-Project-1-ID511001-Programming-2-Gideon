@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+///<summary>
+/// The Course class stores department, code, name, description, credit and fees in a Course object.
+/// Its uses public properties to control the other classes access to private information.
+/// It contains a methed to return a string containing all the course info so that Form1.cs can display it.
+/// </summary>
+
 namespace Project1Gideon
 {
     public class Course
@@ -25,7 +31,12 @@ namespace Project1Gideon
             this.credits = credits;
             this.fees = fees;
         }
-        //formatted string 
+
+        /// <summary>
+        /// Takes the course data and formats it into a string.
+        /// </summary>
+        /// <returns>a formatted string for Form1 to display course info.</returns>
+
         public string CourseInfo()
         {
             return $"{department.DepartmentInfo()}\nCode: {code}\nCourse: {name}\nDescription: {description}\nCredits: {credits}\nFees: {fees:c}";
