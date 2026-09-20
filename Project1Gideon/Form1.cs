@@ -19,7 +19,7 @@ namespace Project1Gideon
         private List<Course> courses;
         private List<Learner> learners;
         private List<Lecturer> lecturers;
-        //The ? after Lecturer means the variable is allowed to be null
+        //The ? after Lecturer means the variable is allowed to be null.
         private Lecturer? selectedLecturer;
 
         /// <summary>

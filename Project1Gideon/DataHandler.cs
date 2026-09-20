@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+///<summary>
+/// The DataHandler class is responsible for reading in learner and lecturer information from the .txt files.
+/// It converts the info into objects and adds them to the correct lists.
+/// It is also responsible for saving and updating the .txt files when a person is added or removed.
+/// </summary>
+
 namespace Project1Gideon
 {
     public class DataHandler
@@ -26,7 +32,18 @@ namespace Project1Gideon
             learners = new List<Learner>();
             lecturers = new List<Lecturer>();
         }
-        //Reads Learner information and adds them to the learner list
+
+        /// <summary>
+        /// Checks if PersonType is LEARNER or LECTURER.
+        /// Reads the .txt, creates an object, formats the data and adds it to the correct list.
+        /// Displays error message if file was not found or if any other error occured.
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <param name="learners"></param>
+        /// <param name="courses"></param>
+        /// <param name="lecturers"></param>
+        /// <param name="type"></param>
+
         public static void ReadPersonFromFile(string filepath, List<Learner> learners, List<Course> courses, List<Lecturer> lecturers, PersonType type)
         {
             if (type == PersonType.LEARNER)
@@ -96,7 +113,15 @@ namespace Project1Gideon
                 }
             }
         }
-        //Takes informaton from learners and course assessment marks then formats and saves them back into a .txt
+
+        /// <summary>
+        /// Takes the data from the learners list and comma seperates it into a string.
+        /// It does this for each learner and then updates the learners.txt file with any new data.
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <param name="learners"></param>
+        /// <param name="courses"></param>
+
         public static void SaveLearnersToFile(string filepath, List<Learner> learners, List<Course> courses)
         {
             try

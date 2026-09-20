@@ -15,11 +15,11 @@ namespace Project1Gideon
 {
     public class CourseAssessmentMark
     {
-        //stores course and assessment marks
+        //stores course and assessment marks.
         private Course course;
         private List<int> marks;
 
-        //constructor
+        //constructor.
         public CourseAssessmentMark(Course course, List<int> marks)
         {
             this.course = course;
@@ -111,7 +111,7 @@ namespace Project1Gideon
             }
             return highMarks;
         }
-        //creates a list of lowest mark
+        //creates a list of lowest mark.
         public List<int> GetLowestMark()
         {
             int min = marks.Min();
@@ -125,7 +125,7 @@ namespace Project1Gideon
             }
             return lowMarks;
         }
-        //creates a list of all failed marks
+        //creates a list of all failed marks.
         public List<int> GetFailMark()
         {
             List<int> failMarks = new List<int>();
