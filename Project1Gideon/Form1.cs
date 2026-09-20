@@ -1,5 +1,15 @@
 using System.Linq.Expressions;
 
+/// <summary>
+/// The Form1 class controls the interface responsible for displaying all the inputs and information regarding learners and lecturers.
+/// It contains methods to hide or show buttons/inputs depending on which inputs have been selected.
+/// Searches for an existing ID to locate a lecturer.
+/// Displays institution, department and course info.
+/// Adds learners to the learners.txt file.
+/// Adds lecturers to the lecturers.txt file.
+/// Has the ability to remove lecturers from the lecturer.txt file and update the files after a person has been added or removed.
+/// </summary>
+
 namespace Project1Gideon
 {
     public partial class Form1 : Form
@@ -11,6 +21,14 @@ namespace Project1Gideon
         private List<Lecturer> lecturers;
         //The ? after Lecturer means the variable is allowed to be null
         private Lecturer? selectedLecturer;
+
+        /// <summary>
+        /// Calls upon the seeded institution, department and course lists.
+        /// Adds courses and lecturer positions into the comboboxs.
+        /// Creates learner and lecturer lists.
+        /// Reads in lecturer and learner information from thier .txt files using the PersonType enum.
+        /// </summary>
+
         public Form1()
         {
             InitializeComponent();
@@ -33,11 +51,11 @@ namespace Project1Gideon
             learners = new List<Learner>();
             lecturers = new List<Lecturer>();
 
-            //Calls readfile methods
-            DataHandler.ReadLearnersFromFile("learners.txt", learners, courses);
-            DataHandler.ReadLecturersFromFile("lecturers.txt", lecturers, courses);
+            //Calls readfile methods from DataHandler.
+            DataHandler.ReadPersonFromFile("learners.txt", learners, courses, lecturers, DataHandler.PersonType.LEARNER);
+            DataHandler.ReadPersonFromFile("lecturers.txt", learners, courses, lecturers, DataHandler.PersonType.LECTURER);
         }
-        //Hides DataGridView and displays add learner inputs
+        //Hides DataGridView and displays add learner inputs.
         private void ShowLearnerInputs()
         {
             lblDetails.Text = "Add Learner:";
@@ -60,7 +78,7 @@ namespace Project1Gideon
             btnSaveLearner.Visible = true;
             cmbCourse.Visible = true;
         }
-        //Hides Learner inputs
+        //Hides Learner inputs.
         private void HideLearnerInputs()
         {
             lblFirstName.Visible = false;
@@ -81,7 +99,7 @@ namespace Project1Gideon
             btnSaveLearner.Visible = false;
             cmbCourse.Visible = false;
         }
-        //Clears add learner inputs so another learner can be added
+        //Clears add learner inputs so another learner can be added.
         private void ClearAddLearner()
         {
             tbxFirstName.Clear();
@@ -93,7 +111,7 @@ namespace Project1Gideon
             tbxMark4.Clear();
             tbxMark5.Clear();
         }
-        //Displays Lecturer inputs and hides DGV
+        //Displays Lecturer inputs and hides DGV.
         private void ShowLecturerInputs()
         {
             //I deleted cleardgv and now have an error
@@ -109,7 +127,7 @@ namespace Project1Gideon
             cmbPosition.Visible = true;
             btnSaveLecturer.Visible = true;
         }
-        //Hides Lecturer inputs
+        //Hides Lecturer inputs.
         private void HideLecturerInputs()
         {
             lblFirstName.Visible = false;
@@ -150,14 +168,18 @@ namespace Project1Gideon
             btnCancel.Visible = false;
             lblAreYouSure.Visible = false;
         }
-        //Clears DataGridView
+        //Clears DataGridView.
         private void ClearDgv()
         {
             dgvDisplayInfo.Rows.Clear();
             dgvDisplayInfo.Columns.Clear();
         }
 
-        //Checks if Id is avaliable 
+        /// <summary>
+        /// Checks for the next available ID in the lecturer list.
+        /// </summary>
+        /// <returns>id</returns>
+
         private int CheckLecturerID()
         {
             int id = 1;
@@ -168,8 +190,8 @@ namespace Project1Gideon
                 idExists = false;
 
                 foreach (Lecturer existingLecturer in lecturers)
-                {                         //== is equal to
-                    if (existingLecturer.Id == id)
+                {
+                    if (existingLecturer.Id == id)  //== is equal to
                     {
                         id++;
                         idExists = true;
@@ -179,6 +201,13 @@ namespace Project1Gideon
             }
             return id;
         }
+
+        /// <summary>
+        /// Hides previous displayed info and buttons and clears the DataGridView.
+        /// Displays the DataGridView so the correct info can be displayed.
+        /// Displays all course details into the DataGridView.
+        /// </summary>
+
         private void btn1DisplayCourseDetails_Click(object sender, EventArgs e)
         {
             ClearDgv();
@@ -198,7 +227,7 @@ namespace Project1Gideon
             foreach (Course course in courses)
             {
                 int rowIdx = dgvDisplayInfo.Rows.Add();
-                //rowIdx selects the row, .cells[""] selects the column and .Value inserts the info
+                //rowIdx selects the row, .cells[""] selects the column and .Value inserts the info.
                 dgvDisplayInfo.Rows[rowIdx].Cells["Course"].Value = course.Code + " " + course.Name;
                 dgvDisplayInfo.Rows[rowIdx].Cells["Description"].Value = course.Description;
                 dgvDisplayInfo.Rows[rowIdx].Cells["Credits"].Value = course.Credits;
@@ -206,9 +235,15 @@ namespace Project1Gideon
                 dgvDisplayInfo.Rows[rowIdx].Cells["Institution"].Value = course.Department.Institution.Name;
                 dgvDisplayInfo.Rows[rowIdx].Cells["Department"].Value = course.Department.DepartmentName;
             }
-            //Sizes columns automatically to fit all info
+            //Sizes columns automatically to fit all info.
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        /// <summary>
+        /// Hides previous displayed info and buttons and clears the DataGridView.
+        /// Displays the DataGridView so the correct info can be displayed
+        /// Displays all learners ID, Name, Course and their assessment marks.
+        /// </summary>
 
         private void btn2DisplayAllMarks_Click(object sender, EventArgs e)
         {
@@ -235,6 +270,12 @@ namespace Project1Gideon
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        /// <summary>
+        /// Hides previous displayed info and buttons and clears the DataGridView.
+        /// Displays the DataGridView so the correct info can be displayed.
+        /// The same learner info as the method above but the course marks have been converted to grades.
+        /// </summary>
+
         private void btn3DisplayAllGrades_Click(object sender, EventArgs e)
         {
             ClearDgv();
@@ -259,6 +300,12 @@ namespace Project1Gideon
             }
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        /// <summary>
+        /// Hides previous displayed info and buttons.
+        /// Displays the DataGridView so the correct info can be displayed.
+        /// Displays learner info and thier highest assessment marks to the DataGridView.
+        /// </summary>
 
         private void btn4DisplayHighestMarks_Click(object sender, EventArgs e)
         {
@@ -285,6 +332,13 @@ namespace Project1Gideon
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        /// <summary>
+        /// Hides previous displayed info and buttons and clears the DataGridView.
+        /// Displays the DataGridView so the correct info can be displayed.
+        /// Displays learner info and thier lowest assessment marks to the DataGridView.
+        /// </summary>
+
+
         private void btn5DisplayLowestMarks_Click(object sender, EventArgs e)
         {
             ClearDgv();
@@ -309,6 +363,12 @@ namespace Project1Gideon
             }
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        /// <summary>
+        /// Hides previous displayed info and buttons and clears the DataGridView.
+        /// Displays the DataGridView so the correct info can be displayed.
+        /// Displays learner info and thier failed assessment marks to the DataGridView.
+        /// </summary>
 
         private void btn6DisplayFailMarks_Click(object sender, EventArgs e)
         {
@@ -335,6 +395,13 @@ namespace Project1Gideon
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        /// <summary>
+        /// Hides previous displayed info and buttons and clears the DataGridView.
+        /// Displays the DataGridView so the correct info can be displayed.
+        /// Displays learner info and the average of their assessment marks to the DataGridView.
+        /// </summary>
+
+
         private void btn7DisplayAvgMarks_Click(object sender, EventArgs e)
         {
             ClearDgv();
@@ -360,6 +427,12 @@ namespace Project1Gideon
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        /// <summary>
+        /// Hides previous displayed info and buttons and clears the DataGridView.
+        /// Displays the DataGridView so the correct info can be displayed.
+        /// Displays learner info and thier average grade to the DataGridView.
+        /// </summary>
+
         private void btn8DisplayAvgGrades_Click(object sender, EventArgs e)
         {
             ClearDgv();
@@ -384,6 +457,12 @@ namespace Project1Gideon
             }
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        /// <summary>
+        /// Hides previous displayed info and buttons and clears the DataGridView.
+        /// Displays the DataGridView so the correct info can be displayed.
+        /// Displays all the lecturers and their info inc position, institution, department, course and salary to the DataGridView.
+        /// </summary>
 
         private void btn9DisplayLecturerDetails_Click(object sender, EventArgs e)
         {
@@ -416,6 +495,11 @@ namespace Project1Gideon
             dgvDisplayInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        /// <summary>
+        /// Hides the DataGridView and input buttons for adding and removing a lecturer.
+        /// Makes the add learner inputs visable.
+        /// </summary>
+
         private void btn10AddALearner_Click(object sender, EventArgs e)
         {
             HideLecturerInputs();
@@ -423,12 +507,23 @@ namespace Project1Gideon
             HideRemoveLecturer();
         }
 
+        /// <summary>
+        /// Hides the DataGridView and input buttons for adding a learner and removing a lecturer.
+        /// Makes the add lecturer inputs visable.
+        /// </summary>
+
         private void btn11AddALecturer_Click(object sender, EventArgs e)
         {
             HideLearnerInputs();
             ShowLecturerInputs();
             HideRemoveLecturer();
         }
+
+        /// <summary>
+        /// Adds learner to the learners list and saves it to learners.txt file.
+        /// Displays an error message if something goes wrong.
+        /// </summary>
+        /// <param name="learner"></param>
 
         private void AddLearner(Learner learner)
         {
@@ -442,6 +537,15 @@ namespace Project1Gideon
                 MessageBox.Show("There was an error adding the learner.");
             }
         }
+
+        /// <summary>
+        /// Converts the users inputs into the correct variables.
+        /// Creates a new list of assessment marks and adds it to the CourseAssessmentMark object.
+        /// Generates the next valid ID and creates a new learner object from the users inputs.
+        /// Saves the new Learner to the learners.txt file.
+        /// Displays a message if the learner was saved correctly or an error if it wasn't.
+        /// Clears the inputs so another learner can be added.
+        /// </summary>
 
         private void btnSaveLearner_Click(object sender, EventArgs e)
         {
@@ -477,6 +581,12 @@ namespace Project1Gideon
             }
         }
 
+        /// <summary>
+        /// Adds lecturer to the lecturers list and saves it to the lecturer.txt file.
+        /// Displays an error message if something goes wrong.
+        /// </summary>
+        /// <param name="lecturer"></param>
+
         private void AddLecturer(Lecturer lecturer)
         {
             try
@@ -489,6 +599,15 @@ namespace Project1Gideon
                 MessageBox.Show("There was an error adding the lecturer.");
             }
         }
+
+        /// <summary>
+        /// Converts the users inputs into the correct variables.
+        /// Gets the lecturers salary based on their position.
+        /// Generates a valid ID and creates a new lecturer object.
+        /// Saves the new Lecturer to the lecturers.txt file.
+        /// Displays a message if the lecturer was saved correctly or an error if it wasn't.
+        /// Clears the inputs so another lecturer can be added.
+        /// </summary>
 
         private void btnSaveLecturer_Click(object sender, EventArgs e)
         {
@@ -544,6 +663,11 @@ namespace Project1Gideon
             }
         }
 
+        /// <summary>
+        /// Hides add learner and lecturer inputs.
+        /// Makes remove lecturer inputs and buttons visable. 
+        /// </summary>
+
         private void btn12RemoveALecturer_Click(object sender, EventArgs e)
         {
             HideLearnerInputs();
@@ -551,12 +675,24 @@ namespace Project1Gideon
             ShowRemoveLecturer();
         }
 
+        /// <summary>
+        /// Displays a label asking if the user is sure they want to remove the lecturer.
+        /// Makes btnYes and btnCancel visable.
+        /// </summary>
+
         private void btnRemove_Click(object sender, EventArgs e)
         {
             lblAreYouSure.Visible = true;
             btnYes.Visible = true;
             btnCancel.Visible = true;
         }
+
+        /// <summary>
+        /// Converts the user input into an int and checks it against the current lecturers list for a match.
+        /// When the matching ID is found it sets the corrisponding lecturer as the selectedLecturer.
+        /// Displays a lable with the lecturers first and last name.
+        /// Displays an error message if the ID does not match or if the input was invalid.
+        /// </summary>
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -585,6 +721,15 @@ namespace Project1Gideon
                 MessageBox.Show("Please enter a valid ID.");
             }
         }
+
+        /// <summary>
+        /// If a lecturer has been selected they are removed.
+        /// If a lecturer isn't selected display a message telling the user.
+        /// Update the lecturers.txt file with the removed lecturer.
+        /// Resets the remove lecturer buttons and inputs ready to remove another lecturer.
+        /// Displays an error message if something goes wrong.
+        /// </summary>
+
         private void btnYes_Click(object sender, EventArgs e)
         {
             try
@@ -611,12 +756,20 @@ namespace Project1Gideon
             }
         }
 
+        /// <summary>
+        /// When clicked hide the inputs below.
+        /// </summary>
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             lblAreYouSure.Visible = false;
             btnYes.Visible = false;
             btnCancel.Visible = false;
         }
+
+        /// <summary>
+        /// When clicked shows a messagebox with additional information about the selected lecturer.
+        /// </summary>
 
         private void lblLecturerName_Click(object sender, EventArgs e)
         {

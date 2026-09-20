@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Project1Gideon")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a60375315c53cde569ccb160178cb08fc405dcaf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d03ab2b86b8c188a61bc9db5ee5f33f765d660b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Project1Gideon")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Project1Gideon")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

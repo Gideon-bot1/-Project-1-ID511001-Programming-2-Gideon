@@ -8,7 +8,11 @@ namespace Project1Gideon
 {
     public class DataHandler
     {
-
+        public enum PersonType
+        {
+            LEARNER,
+            LECTURER,
+        }
         //Stores lists for datahandler
         private List<Learner> learners;
         private List<Lecturer> lecturers;
@@ -23,71 +27,73 @@ namespace Project1Gideon
             lecturers = new List<Lecturer>();
         }
         //Reads Learner information and adds them to the learner list
-        public static void ReadLearnersFromFile(string filepath, List<Learner> learners, List<Course> courses)
+        public static void ReadPersonFromFile(string filepath, List<Learner> learners, List<Course> courses, List<Lecturer> lecturers, PersonType type)
         {
-            try
+            if (type == PersonType.LEARNER)
             {
-                List<string> lines = File.ReadAllLines(filepath).ToList();
-                foreach (string line in lines)
+                try
                 {
-                    string[] learnerDetails = line.Split(',');
-                    int id = int.Parse(learnerDetails[0]);
-                    string firstName = learnerDetails[1];
-                    string lastName = learnerDetails[2];
-                    int courseNum = int.Parse(learnerDetails[3]);
-
-                    List<int> marks = new List<int>()
+                    List<string> lines = File.ReadAllLines(filepath).ToList();
+                    foreach (string line in lines)
                     {
-                        Convert.ToInt32(learnerDetails[4]),
-                        Convert.ToInt32(learnerDetails[5]),
-                        Convert.ToInt32(learnerDetails[6]),
-                        Convert.ToInt32(learnerDetails[7]),
-                        Convert.ToInt32(learnerDetails[8])
-                    };
+                        string[] learnerDetails = line.Split(',');
+                        int id = int.Parse(learnerDetails[0]);
+                        string firstName = learnerDetails[1];
+                        string lastName = learnerDetails[2];
+                        int courseNum = int.Parse(learnerDetails[3]);
 
-                    CourseAssessmentMark assessmentMarks = new CourseAssessmentMark(courses[courseNum], marks);
-                    Learner learner = new Learner(id, firstName, lastName, assessmentMarks);
-                    learners.Add(learner);
+                        List<int> marks = new List<int>()
+                        {
+                            Convert.ToInt32(learnerDetails[4]),
+                            Convert.ToInt32(learnerDetails[5]),
+                            Convert.ToInt32(learnerDetails[6]),
+                            Convert.ToInt32(learnerDetails[7]),
+                            Convert.ToInt32(learnerDetails[8])
+                        };
+
+                        CourseAssessmentMark assessmentMarks = new CourseAssessmentMark(courses[courseNum], marks);
+                        Learner learner = new Learner(id, firstName, lastName, assessmentMarks);
+                        learners.Add(learner);
+                    }
                 }
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show("The Learner.txt file could not be found.");
-            }
-            catch
-            {
-                MessageBox.Show("There was an error reading the Learners.txt file.");
-            }
-        }
-        //Reads lecturer information and adds them to lecturer list
-        public static void ReadLecturersFromFile(string filepath, List<Lecturer> lecturers, List<Course> courses)
-        {
-            try
-            {
-                List<string> lines = File.ReadAllLines(filepath).ToList();
-                foreach (string line in lines)
+                catch (FileNotFoundException)
                 {
-                    string[] lecturerDetails = line.Split(',');
-                    int id = int.Parse(lecturerDetails[0]);
-                    string firstName = lecturerDetails[1];
-                    string lastName = lecturerDetails[2];
-                    EPosition position = (EPosition)int.Parse(lecturerDetails[3]);
-                    ESalary salary = (ESalary)int.Parse(lecturerDetails[4]);
-                    int courseNum = int.Parse(lecturerDetails[5]);
-
-                    Course course = courses[courseNum];
-
-                    Lecturer lecturer = new Lecturer(id, firstName, lastName, position, salary, course);
-                    lecturers.Add(lecturer);
+                    MessageBox.Show("The Learners.txt file could not be found.");
+                }
+                catch
+                {
+                    MessageBox.Show("There was an error reading the Learners.txt file.");
                 }
             }
-            catch (FileNotFoundException)
+            else if (type == PersonType.LECTURER)
             {
-                MessageBox.Show("The Lecturer.txt file could not be found.");
-            }
-            catch
-            {
-                MessageBox.Show("There was an error reading the Lecturers.txt file.");
+                try
+                {
+                    List<string> lines = File.ReadAllLines(filepath).ToList();
+                    foreach (string line in lines)
+                    {
+                        string[] lecturerDetails = line.Split(',');
+                        int id = int.Parse(lecturerDetails[0]);
+                        string firstName = lecturerDetails[1];
+                        string lastName = lecturerDetails[2];
+                        EPosition position = (EPosition)int.Parse(lecturerDetails[3]);
+                        ESalary salary = (ESalary)int.Parse(lecturerDetails[4]);
+                        int courseNum = int.Parse(lecturerDetails[5]);
+
+                        Course course = courses[courseNum];
+
+                        Lecturer lecturer = new Lecturer(id, firstName, lastName, position, salary, course);
+                        lecturers.Add(lecturer);
+                    }
+                }
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("The Lecturers.txt file could not be found.");
+                }
+                catch
+                {
+                    MessageBox.Show("There was an error reading the Lecturers.txt file.");
+                }
             }
         }
         //Takes informaton from learners and course assessment marks then formats and saves them back into a .txt
