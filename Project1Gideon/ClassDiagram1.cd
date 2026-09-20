@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Project1Gideon.Course">
+    <Position X="24.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAAAAAgAAAAIAAgAAQQMAAEAAAIAAAAAIAAAQA=</HashCode>
+      <FileName>Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project1Gideon.CourseAssessmentMark">
+    <Position X="13" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAiACAEEAgAAACIAAAAAAQAAABAAACAAAAAAAAAA=</HashCode>
+      <FileName>CourseAssessmentMark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project1Gideon.DataHandler">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Project1Gideon.DataHandler.PersonType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DataHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAgAAAAAAAAAAgAAAAAAACAEAAABAAAAAA=</HashCode>
+      <FileName>DataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project1Gideon.Department">
+    <Position X="24.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAABBAAAAQAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Department.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project1Gideon.Form1">
+    <Position X="20.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YASMCBgAKXJ0BBlZkMGVAs62iugSIACnGwACEAwEAgI=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project1Gideon.Institution">
+    <Position X="24.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAgAAAAAAAAAAAAAQAAAIEAAACBAAAAAAAAAA=</HashCode>
+      <FileName>Institution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project1Gideon.Learner">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Learner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project1Gideon.Lecturer">
+    <Position X="17" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAggAAoAIAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Lecturer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project1Gideon.Person">
+    <Position X="16" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAACAAAAgg=</HashCode>
+      <FileName>Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project1Gideon.Seeder">
+    <Position X="22.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAABAAAAAAAAAAAAgAAAAEAQAEAAAAAAAAAA=</HashCode>
+      <FileName>Seeder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Project1Gideon.EPosition">
+    <Position X="18.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAJAAA=</HashCode>
+      <FileName>EPosition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Project1Gideon.ESalary">
+    <Position X="18.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAQAAAAAAAAAAAAAAAACAAAAACAAAAAAg=</HashCode>
+      <FileName>ESalary.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
