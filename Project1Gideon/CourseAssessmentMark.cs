@@ -4,6 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// This class handles all the learners grades and assessment marks.
+/// Calculates a learners grade from their assessment marks.
+/// Creates lists of marks and grades for Form1.cs to display.
+/// This includes highest, lowest, failed and average marks/grades.
+/// </summary>
+
 namespace Project1Gideon
 {
     public class CourseAssessmentMark
@@ -22,7 +29,7 @@ namespace Project1Gideon
         {
             get { return course; }
         }
-        //Converts marks to grades
+        //Converts marks to grades.
         private string MarkToGrade(int mark)
         {
             if (mark >= 90)
@@ -70,6 +77,7 @@ namespace Project1Gideon
                 return "E";
             }
         }
+        // Controls access to learners marks.
         public List<int> AllMarks
         {
             get { return marks; }
@@ -84,7 +92,12 @@ namespace Project1Gideon
             }
             return grades;
         }
-        //creates a list of highest mark
+
+        /// <summary>
+        /// Creates a list of the highest marks.
+        /// </summary>
+        /// <returns>A list of highest marks.</returns>
+
         public List<int> GetHighestMark()
         {
             int max = marks.Max();
@@ -125,12 +138,17 @@ namespace Project1Gideon
             }
             return failMarks;
         }
-        //Returns the average mark
+
         public double GetAvgMark()
         {
             return marks.Average();
         }
-        //Gets the avg mark (double), rounds it, outputs an int
+
+        /// <summary>
+        /// Takes the average mark rounds it into an int and returns an average grade via MarkToGrade().
+        /// </summary>
+        /// <returns>The grade equivalent to the average mark</returns>
+
         public string GetAvgGrade()
         {
             double avg = GetAvgMark();
